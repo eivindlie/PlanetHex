@@ -10,7 +10,7 @@ namespace PlanetGeneration
     {
         public int Radius;
         public int NumDivisions;
-        public Material material;
+        public Material[] materials;
 
         // Use this for initialization
         void Start()
@@ -41,7 +41,10 @@ namespace PlanetGeneration
             meshCollider.sharedMesh = mesh;
 
             var meshRenderer = block.GetComponent<MeshRenderer>();
-            meshRenderer.material = material;
+            if (tile.Region != -1)
+            {
+                meshRenderer.material = materials[tile.Region % materials.Length];
+            }
 
             block.transform.position = tile.Center.Project(Radius + height).AsVector();
             return block;

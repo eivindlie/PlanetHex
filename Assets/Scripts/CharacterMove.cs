@@ -26,7 +26,7 @@ public class CharacterMove : MonoBehaviour {
         //transform.Translate(transform.forward * Input.GetAxis("Vertical") * speed * Time.deltaTime);
         //transform.Translate(transform.right * Input.GetAxis("Horizontal") * speed * Time.deltaTime);
 
-        if(IsGrounded())
+        if(true || IsGrounded())
         {
             rigidbody.AddForce(transform.forward * Input.GetAxis("Vertical") * speed);
             rigidbody.AddForce(transform.right * Input.GetAxis("Horizontal") * speed);

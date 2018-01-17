@@ -11,26 +11,20 @@ namespace PlanetGeneration
         public Point Center;
         public List<Point> Boundary = new List<Point>();
         public List<Face> Faces;
-        public Point[] neighbourIds;
+        public int Region;
 
         public Tile(Point center, float hexSize = 1.0f)
         {
             this.Center = center;
+            this.Region = center.Region;
             this.HexSize = hexSize;
             this.Faces = center.GetOrderedFaces();
 
-            var neighbourHash = new Dictionary<Point, int>();
             foreach(Face face in Faces)
             {
                 this.Boundary.Add(face.GetCentroid().Segment(this.Center, HexSize));
-
-                foreach(Point point in face.GetOtherPoints(Center))
-                {
-                    neighbourHash[point] = 1;
-                }
             }
 
-            neighbourIds = neighbourHash.Keys.ToArray();
 
             if (!PointingAwayFromOrigin())
             {

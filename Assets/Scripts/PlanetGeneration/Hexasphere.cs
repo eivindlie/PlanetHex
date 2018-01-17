@@ -74,6 +74,7 @@ namespace PlanetGeneration
 
             var newFaces = new List<Face>();
 
+            var region = 0;
             foreach (Face face in faces)
             {
                 List<Point> prev = null;
@@ -87,6 +88,7 @@ namespace PlanetGeneration
                     bottom = left[i].Subdivide(right[i], i, this);
                     for (var j = 0; j < i; j++)
                     {
+                        if(prev[j].Region == -1) prev[j].Region = region;
                         var nf = new Face(prev[j], bottom[j], bottom[j + 1]);
                         newFaces.Add(nf);
 
@@ -97,6 +99,11 @@ namespace PlanetGeneration
                         }
                     }
                 }
+                foreach(var p in bottom)
+                {
+                    if (p.Region == -1) p.Region = region;
+                }
+                region++;
             }
 
             faces = newFaces;

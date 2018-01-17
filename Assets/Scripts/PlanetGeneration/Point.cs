@@ -9,6 +9,7 @@ namespace PlanetGeneration
         public float x;
         public float y;
         public float z;
+        public int Region = -1;
         public List<Face> faces;
 
         public Point(float x, float y, float z)
