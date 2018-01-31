@@ -11,8 +11,12 @@ namespace PlanetGeneration
     {
         private Dictionary<Point, Point> Points;
         private int NumDivisions;
+        public int RegionDivisions;
         private float HexSize;
         private float Radius;
+
+        private const int TILES_PER_REGION = 512;
+
         public Region[] Regions;
 
         public Hexasphere(float radius, int numDivisions, float hexSize = 1.0f)
@@ -20,7 +24,6 @@ namespace PlanetGeneration
             this.Radius = radius;
             this.NumDivisions = numDivisions;
             this.HexSize = hexSize;
-            this.Regions = new Region[20];
             Points = new Dictionary<Point, Point>();
 
             Create();
@@ -73,18 +76,50 @@ namespace PlanetGeneration
                 new Face(corners[9], corners[1], corners[11], false)
             };
 
+            RegionDivisions = (int)Math.Ceiling(Math.Sqrt((Math.Pow(NumDivisions, 2)) / TILES_PER_REGION));
+
             var newFaces = new List<Face>();
 
+            foreach(Face face in faces)
+            {
+                List<Point> prev = null;
+                var bottom = new List<Point>() { face.points[0] };
+                var left = face.points[0].Subdivide(face.points[1], RegionDivisions, this);
+                var right = face.points[0].Subdivide(face.points[2], RegionDivisions, this);
+
+                for (var i = 1; i <= RegionDivisions; i++)
+                {
+                    prev = bottom;
+                    bottom = left[i].Subdivide(right[i], i, this);
+                    for (var j = 0; j < i; j++)
+                    {
+                        var nf = new Face(prev[j], bottom[j], bottom[j + 1], false);
+                        newFaces.Add(nf);
+
+                        if (j > 0)
+                        {
+                            nf = new Face(prev[j - 1], prev[j], bottom[j], false);
+                            newFaces.Add(nf);
+                        }
+                    }
+                }
+            }
+
+            faces = newFaces;
+            newFaces = new List<Face>();
+            var numDivisions = this.NumDivisions / RegionDivisions;
+
+            this.Regions = new Region[faces.Count];
             var regionId = 0;
             foreach (Face face in faces)
             {
                 Regions[regionId] = new Region(regionId);
                 List<Point> prev = null;
                 var bottom = new List<Point>() { face.points[0] };
-                var left = face.points[0].Subdivide(face.points[1], this.NumDivisions, this);
-                var right = face.points[0].Subdivide(face.points[2], this.NumDivisions, this);
+                var left = face.points[0].Subdivide(face.points[1], numDivisions, this);
+                var right = face.points[0].Subdivide(face.points[2], numDivisions, this);
 
-                for (var i = 1; i <= NumDivisions; i++)
+                for (var i = 1; i <= numDivisions; i++)
                 {
                     prev = bottom;
                     bottom = left[i].Subdivide(right[i], i, this);

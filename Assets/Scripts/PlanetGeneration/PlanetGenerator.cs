@@ -32,7 +32,7 @@ namespace PlanetGeneration
 
             foreach (var region in Hexasphere.Regions)
             {
-                if ((region.Center - pos).magnitude < Radius)
+                if ((region.Center - pos).magnitude < Radius / Hexasphere.RegionDivisions)
                 {
                     if (!loadedRegions.ContainsKey(region))
                     {
