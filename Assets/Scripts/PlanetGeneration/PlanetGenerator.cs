@@ -19,11 +19,13 @@ namespace PlanetGeneration
         private SimplexNoiseGenerator NoiseGenerator = new SimplexNoiseGenerator();
         private Hexasphere Hexasphere;
         private Dictionary<Region, GameObject> loadedRegions;
+        private Dictionary<Region, IEnumerator> regionCoroutines;
 
         void Start()
         {
             Hexasphere = new Hexasphere(Radius, NumDivisions);
             loadedRegions = new Dictionary<Region, GameObject>();
+            regionCoroutines = new Dictionary<Region, IEnumerator>();
         }
 
         void Update()
@@ -36,22 +38,25 @@ namespace PlanetGeneration
                 {
                     if (!loadedRegions.ContainsKey(region))
                     {
-                        LoadRegion(region);
+                        regionCoroutines[region] = LoadRegion(region);
+                        StartCoroutine(regionCoroutines[region]);
                     }
                 } else
                 {
                     if (loadedRegions.ContainsKey(region))
                     {
+                        StopCoroutine(regionCoroutines[region]);
                         UnloadRegion(region);
                     }
                 }
             }
         }
 
-        void LoadRegion(Region region)
+        IEnumerator LoadRegion(Region region, int tilesPerFrame = 100)
         {
             var regionGameObject = new GameObject("region_" + region.ID);
             regionGameObject.transform.parent = this.transform;
+            var i = 0;
             foreach (Tile tile in region.GetTiles())
             {
                 var height = Mathf.Max(TerrainHeight - NoiseGenerator.getDensity(tile.Center.AsVector(), 0, TerrainHeight, octaves: 3, persistence: 0.85f), 0);
@@ -59,6 +64,12 @@ namespace PlanetGeneration
                 {
                     var block = CreateBlock(tile, y);
                     block.transform.parent = regionGameObject.transform;
+                }
+                i++;
+                if(i > tilesPerFrame)
+                {
+                    i = 0;
+                    yield return null;
                 }
             }
             loadedRegions.Add(region, regionGameObject);
