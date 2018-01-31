@@ -127,6 +127,11 @@ namespace PlanetGeneration
                 var newTile = new Tile(p, HexSize);
                 this.Regions[p.Region].AddTile(new Tile(p, HexSize));
             }
+
+            foreach(Region region in Regions)
+            {
+                region.CalculateCenter();
+            }
         }
 
         public Point GetOrAddPoint(Point point)

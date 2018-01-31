@@ -12,27 +12,64 @@ namespace PlanetGeneration
         public int Radius;
         public int TerrainHeight;
         public int NumDivisions;
+        public GameObject player;
         public Material[] materials;
-        private SimplexNoiseGenerator NoiseGenerator = new SimplexNoiseGenerator();
 
-        // Use this for initialization
+
+        private SimplexNoiseGenerator NoiseGenerator = new SimplexNoiseGenerator();
+        private Hexasphere Hexasphere;
+        private Dictionary<Region, GameObject> loadedRegions;
+
         void Start()
         {
-            var hexasphere = new Hexasphere(Radius, NumDivisions);
-            var heights = new List<float>();
+            Hexasphere = new Hexasphere(Radius, NumDivisions);
+            loadedRegions = new Dictionary<Region, GameObject>();
+        }
 
-            foreach (Region region in hexasphere.Regions)
+        void Update()
+        {
+            var pos = (player.transform.position - this.transform.position).normalized * Radius;
+
+            foreach (var region in Hexasphere.Regions)
             {
-                foreach(Tile tile in region.GetTiles())
+                if ((region.Center - pos).magnitude < Radius)
                 {
-                    var height = Mathf.Max(TerrainHeight - NoiseGenerator.getDensity(tile.Center.AsVector(), 0, TerrainHeight, octaves: 3, persistence: 0.85f), 0);
-                    heights.Add(height);
-                    for (var y = 0; y <= height; y++)
+                    if (!loadedRegions.ContainsKey(region))
                     {
-                        var block = CreateBlock(tile, y);
-                        block.transform.parent = this.transform;
+                        LoadRegion(region);
+                    }
+                } else
+                {
+                    if (loadedRegions.ContainsKey(region))
+                    {
+                        UnloadRegion(region);
                     }
                 }
+            }
+        }
+
+        void LoadRegion(Region region)
+        {
+            var regionGameObject = new GameObject("region_" + region.ID);
+            regionGameObject.transform.parent = this.transform;
+            foreach (Tile tile in region.GetTiles())
+            {
+                var height = Mathf.Max(TerrainHeight - NoiseGenerator.getDensity(tile.Center.AsVector(), 0, TerrainHeight, octaves: 3, persistence: 0.85f), 0);
+                for (var y = 0; y <= height; y++)
+                {
+                    var block = CreateBlock(tile, y);
+                    block.transform.parent = regionGameObject.transform;
+                }
+            }
+            loadedRegions.Add(region, regionGameObject);
+        }
+
+        void UnloadRegion(Region region)
+        {
+            if (loadedRegions.ContainsKey(region))
+            {
+                Destroy(loadedRegions[region]);
+                loadedRegions.Remove(region);
             }
         }
 
@@ -94,12 +131,6 @@ namespace PlanetGeneration
             };
             mesh.RecalculateNormals();
             return mesh;
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
         }
     }
 }

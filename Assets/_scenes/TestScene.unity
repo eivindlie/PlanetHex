@@ -271,7 +271,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1550490791}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 58, z: 0}
+  m_LocalPosition: {x: 0, y: 230, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1609402576}
@@ -431,9 +431,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7298be5016f54ef48a3128aa9ef0bab8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Radius: 25
+  Radius: 200
   TerrainHeight: 15
-  NumDivisions: 15
+  NumDivisions: 30
+  player: {fileID: 1550490791}
   materials:
   - {fileID: 2100000, guid: 5c5f5230d73545c4a92c1a000b3d6c3f, type: 2}
   - {fileID: 2100000, guid: ba29141ce25df63499131eee54a223a5, type: 2}
