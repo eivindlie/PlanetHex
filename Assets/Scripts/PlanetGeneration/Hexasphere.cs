@@ -9,17 +9,18 @@ namespace PlanetGeneration
 
     public class Hexasphere
     {
-        public List<Tile> Tiles;
         private Dictionary<Point, Point> Points;
         private int NumDivisions;
         private float HexSize;
         private float Radius;
+        public Region[] Regions;
 
         public Hexasphere(float radius, int numDivisions, float hexSize = 1.0f)
         {
             this.Radius = radius;
             this.NumDivisions = numDivisions;
             this.HexSize = hexSize;
+            this.Regions = new Region[20];
             Points = new Dictionary<Point, Point>();
 
             Create();
@@ -74,9 +75,10 @@ namespace PlanetGeneration
 
             var newFaces = new List<Face>();
 
-            var region = 0;
+            var regionId = 0;
             foreach (Face face in faces)
             {
+                Regions[regionId] = new Region(regionId);
                 List<Point> prev = null;
                 var bottom = new List<Point>() { face.points[0] };
                 var left = face.points[0].Subdivide(face.points[1], this.NumDivisions, this);
@@ -88,7 +90,10 @@ namespace PlanetGeneration
                     bottom = left[i].Subdivide(right[i], i, this);
                     for (var j = 0; j < i; j++)
                     {
-                        if(prev[j].Region == -1) prev[j].Region = region;
+                        if (prev[j].Region == -1)
+                        {
+                            prev[j].Region = regionId;
+                        }
                         var nf = new Face(prev[j], bottom[j], bottom[j + 1]);
                         newFaces.Add(nf);
 
@@ -101,9 +106,9 @@ namespace PlanetGeneration
                 }
                 foreach(var p in bottom)
                 {
-                    if (p.Region == -1) p.Region = region;
+                    if (p.Region == -1) p.Region = regionId;
                 }
-                region++;
+                regionId++;
             }
 
             faces = newFaces;
@@ -117,13 +122,10 @@ namespace PlanetGeneration
 
             Points = newPoints;
 
-            Tiles = new List<Tile>();
-            var TileLookup = new Dictionary<Tile, Tile>();
             foreach (var p in Points.Values)
             {
                 var newTile = new Tile(p, HexSize);
-                this.Tiles.Add(newTile);
-                //TileLookup[newTile] = newTile;
+                this.Regions[p.Region].AddTile(new Tile(p, HexSize));
             }
         }
 
@@ -147,21 +149,23 @@ namespace PlanetGeneration
             var verts = new List<Vector3>();
             var tris = new List<int>();
             var i = 0;
-            foreach(Tile tile in Tiles)
+            foreach(Region region in Regions)
             {
-
-                verts.AddRange(tile.Boundary.Select(p => p.AsVector()));
-
-                tris.Add(i); tris.Add(i + 1); tris.Add(i + 2);
-                tris.Add(i + 2); tris.Add(i + 3); tris.Add(i + 4);
-                tris.Add(i + 4); tris.Add(i); tris.Add(i + 2);
-
-                if (tile.Boundary.Count > 5)
+                foreach(Tile tile in region.GetTiles())
                 {
-                    tris.Add(i + 4); tris.Add(i + 5); tris.Add(i);
-                }
+                    verts.AddRange(tile.Boundary.Select(p => p.AsVector()));
 
-                i += tile.Boundary.Count;
+                    tris.Add(i); tris.Add(i + 1); tris.Add(i + 2);
+                    tris.Add(i + 2); tris.Add(i + 3); tris.Add(i + 4);
+                    tris.Add(i + 4); tris.Add(i); tris.Add(i + 2);
+
+                    if (tile.Boundary.Count > 5)
+                    {
+                        tris.Add(i + 4); tris.Add(i + 5); tris.Add(i);
+                    }
+
+                    i += tile.Boundary.Count;
+                }
             }
 
             var mesh = new Mesh()

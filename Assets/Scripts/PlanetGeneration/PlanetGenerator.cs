@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace PlanetGeneration
 {
@@ -9,20 +10,28 @@ namespace PlanetGeneration
     public class PlanetGenerator : MonoBehaviour
     {
         public int Radius;
+        public int TerrainHeight;
         public int NumDivisions;
         public Material[] materials;
+        private SimplexNoiseGenerator NoiseGenerator = new SimplexNoiseGenerator();
 
         // Use this for initialization
         void Start()
         {
             var hexasphere = new Hexasphere(Radius, NumDivisions);
+            var heights = new List<float>();
 
-            foreach (Tile tile in hexasphere.Tiles)
+            foreach (Region region in hexasphere.Regions)
             {
-                for(var height = 0; height < Random.Range(1, 2.3f); height++)
+                foreach(Tile tile in region.GetTiles())
                 {
-                    var block = CreateBlock(tile, height);
-                    block.transform.parent = this.transform;
+                    var height = Mathf.Max(TerrainHeight - NoiseGenerator.getDensity(tile.Center.AsVector(), 0, TerrainHeight, octaves: 3, persistence: 0.85f), 0);
+                    heights.Add(height);
+                    for (var y = 0; y <= height; y++)
+                    {
+                        var block = CreateBlock(tile, y);
+                        block.transform.parent = this.transform;
+                    }
                 }
             }
         }
