@@ -8,12 +8,40 @@ namespace PlanetGeneration
     {
         public Vector3 Center;
         private List<Tile> Tiles;
+        public Chunk[] Chunks;
         public int ID;
 
         public Region(int id)
         {
             this.ID = id;
             this.Tiles = new List<Tile>();
+        }
+
+        public void GenerateTerrain(SimplexNoiseGenerator noiseGenerator, int terrainHeight, int heightLimit, int planetRadius)
+        {
+            var chunkHeight = Mathf.CeilToInt(heightLimit / Chunk.CHUNK_HEIGHT);
+            Chunks = new Chunk[chunkHeight];
+            for (var i = 0; i < chunkHeight; i++) Chunks[i] = new Chunk(Center + Center.normalized * Chunk.CHUNK_HEIGHT * i, Tiles.Count);
+
+            for(var i = 0; i < Tiles.Count; i++) {
+                var tile = Tiles[i];
+                var height = Mathf.Max(terrainHeight - noiseGenerator.getDensity(tile.Center.AsVector(), 0, terrainHeight, octaves: 3, persistence: 0.60f, multiplier: planetRadius / 2), 0);
+
+                for(var j = 0; j < Chunks.Length; j++)
+                {
+                    for (var h = 0; h < Chunk.CHUNK_HEIGHT; h++)
+                    {
+                        if(j * Chunk.CHUNK_HEIGHT + h < height)
+                        {
+                            Chunks[j].Blocks[i,h] = 1;
+                        }
+                        else
+                        {
+                            Chunks[j].Blocks[i, h] = 0;
+                        }
+                    }
+                }
+            }
         }
 
         public void CalculateCenter()
@@ -36,3 +64,4 @@ namespace PlanetGeneration
         }
     }
 }
+ 

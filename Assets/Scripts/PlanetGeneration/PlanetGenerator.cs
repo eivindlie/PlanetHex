@@ -12,9 +12,12 @@ namespace PlanetGeneration
     {
         public int Radius;
         public int TerrainHeight;
+        public int HeightLimit;
         public int NumDivisions;
+
         public GameObject player;
         public Material[] materials;
+        public Region[] Regions;
 
         private PriorityQueue<Region> regionQueue;
         private SimplexNoiseGenerator NoiseGenerator = new SimplexNoiseGenerator();
@@ -24,7 +27,14 @@ namespace PlanetGeneration
 
         void Start()
         {
+            HeightLimit = TerrainHeight + 20;
             Hexasphere = new Hexasphere(Radius, NumDivisions);
+            Regions = Hexasphere.Regions;
+            foreach (var region in Regions)
+            {
+                region.GenerateTerrain(NoiseGenerator, TerrainHeight, HeightLimit, Radius);
+            }
+
             loadedRegions = new Dictionary<Region, GameObject>();
             regionQueue = new PriorityQueue<Region>();
 
@@ -36,7 +46,7 @@ namespace PlanetGeneration
         {
             var pos = (player.transform.position - this.transform.position).normalized * Radius;
 
-            foreach (var region in Hexasphere.Regions)
+            foreach (var region in Regions)
             {
                 var distance = (region.Center - pos).magnitude;
                 if (distance < (Radius / Hexasphere.RegionDivisions))
@@ -67,20 +77,25 @@ namespace PlanetGeneration
 
                 var priority = regionQueue.PeekAtPriority();
                 var tilesPerFrame = 1000; //(priority < priorityThreshold) ? 200 : 1;
-                Debug.Log(tilesPerFrame);
 
                 var region = regionQueue.Dequeue();
 
                 var regionGameObject = new GameObject("region_" + region.ID);
                 regionGameObject.transform.parent = this.transform;
                 var i = 0;
-                foreach (Tile tile in region.GetTiles())
+                for (var j = 0; j < region.GetTiles().Count; j++)
                 {
-                    var height = Mathf.Max(TerrainHeight - NoiseGenerator.getDensity(tile.Center.AsVector(), 0, TerrainHeight, octaves: 3, persistence: 0.60f, multiplier: Radius / 2), 0);
-                    for (var y = 0; y <= height; y++)
+                    var tile = region.GetTiles()[j];
+                    for (var c = 0; c < region.Chunks.Length; c++)
                     {
-                        var block = CreateBlock(tile, y);
-                        block.transform.parent = regionGameObject.transform;
+                        for (var h = 0; h < Chunk.CHUNK_HEIGHT; h++)
+                        {
+                            if(region.Chunks[c].Blocks[j,h] == 1)
+                            {
+                                var block = CreateBlock(tile, c + h);
+                                block.transform.parent = regionGameObject.transform;
+                            }
+                        }
                     }
                     i++;
                     if(i > tilesPerFrame)
