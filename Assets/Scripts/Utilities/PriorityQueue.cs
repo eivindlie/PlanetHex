@@ -67,6 +67,11 @@ namespace Utilities
             return data.Count;
         }
 
+        public bool IsEmpty()
+        {
+            return data.Count == 0;
+        }
+
         public override string ToString()
         {
             string s = "";

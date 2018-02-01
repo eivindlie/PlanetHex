@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Utilities;
 
 namespace PlanetGeneration
 {
@@ -15,17 +16,20 @@ namespace PlanetGeneration
         public GameObject player;
         public Material[] materials;
 
-
+        private PriorityQueue<Region> regionQueue;
         private SimplexNoiseGenerator NoiseGenerator = new SimplexNoiseGenerator();
         private Hexasphere Hexasphere;
         private Dictionary<Region, GameObject> loadedRegions;
-        private Dictionary<Region, IEnumerator> regionCoroutines;
+        private IEnumerator RegionLoader;
 
         void Start()
         {
             Hexasphere = new Hexasphere(Radius, NumDivisions);
             loadedRegions = new Dictionary<Region, GameObject>();
-            regionCoroutines = new Dictionary<Region, IEnumerator>();
+            regionQueue = new PriorityQueue<Region>();
+
+            RegionLoader = LoadRegions();
+            StartCoroutine(RegionLoader);
         }
 
         void Update()
@@ -34,46 +38,57 @@ namespace PlanetGeneration
 
             foreach (var region in Hexasphere.Regions)
             {
-                if ((region.Center - pos).magnitude < Radius / Hexasphere.RegionDivisions)
+                var distance = (region.Center - pos).magnitude;
+                if (distance < (Radius / Hexasphere.RegionDivisions) * 2)
                 {
                     if (!loadedRegions.ContainsKey(region))
                     {
-                        regionCoroutines[region] = LoadRegion(region);
-                        StartCoroutine(regionCoroutines[region]);
+                        loadedRegions[region] = null;
+                        regionQueue.Enqueue(region, distance);
                     }
                 }
-                else if ((region.Center - pos).magnitude > (Radius / Hexasphere.RegionDivisions) * 2) // Don't unload closest regions - player might turn
+                else if (distance > (Radius / Hexasphere.RegionDivisions) * 3) // Don't unload closest regions - player might turn
                 {
                     if (loadedRegions.ContainsKey(region))
                     {
-                        StopCoroutine(regionCoroutines[region]);
                         UnloadRegion(region);
                     }
                 }
             }
         }
 
-        IEnumerator LoadRegion(Region region, int tilesPerFrame = 20)
+        IEnumerator LoadRegions()
         {
-            var regionGameObject = new GameObject("region_" + region.ID);
-            regionGameObject.transform.parent = this.transform;
-            loadedRegions.Add(region, regionGameObject);
-            var i = 0;
-            foreach (Tile tile in region.GetTiles())
+            while(true)
             {
-                var height = Mathf.Max(TerrainHeight - NoiseGenerator.getDensity(tile.Center.AsVector(), 0, TerrainHeight, octaves: 3, persistence: 0.60f, multiplier: Radius / 2), 0);
-                for (var y = 0; y <= height; y++)
+                if (regionQueue.IsEmpty()) { yield return null; continue; }
+
+                var priority = regionQueue.PeekAtPriority();
+                var tilesPerFrame = (priority < 20) ? 200 : 10;
+
+                var region = regionQueue.Dequeue();
+
+                var regionGameObject = new GameObject("region_" + region.ID);
+                regionGameObject.transform.parent = this.transform;
+                var i = 0;
+                foreach (Tile tile in region.GetTiles())
                 {
-                    var block = CreateBlock(tile, y);
-                    block.transform.parent = regionGameObject.transform;
+                    var height = Mathf.Max(TerrainHeight - NoiseGenerator.getDensity(tile.Center.AsVector(), 0, TerrainHeight, octaves: 3, persistence: 0.60f, multiplier: Radius / 2), 0);
+                    for (var y = 0; y <= height; y++)
+                    {
+                        var block = CreateBlock(tile, y);
+                        block.transform.parent = regionGameObject.transform;
+                    }
+                    i++;
+                    if(i > tilesPerFrame)
+                    {
+                        i = 0;
+                        yield return null;
+                    }
                 }
-                i++;
-                if(i > tilesPerFrame)
-                {
-                    i = 0;
-                    yield return null;
-                }
+                loadedRegions[region] = regionGameObject;
             }
+
         }
 
         void UnloadRegion(Region region)
