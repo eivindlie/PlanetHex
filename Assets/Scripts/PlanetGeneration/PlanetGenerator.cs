@@ -39,7 +39,7 @@ namespace PlanetGeneration
             foreach (var region in Hexasphere.Regions)
             {
                 var distance = (region.Center - pos).magnitude;
-                if (distance < (Radius / Hexasphere.RegionDivisions) * 2)
+                if (distance < (Radius / Hexasphere.RegionDivisions))
                 {
                     if (!loadedRegions.ContainsKey(region))
                     {
@@ -47,7 +47,7 @@ namespace PlanetGeneration
                         regionQueue.Enqueue(region, distance);
                     }
                 }
-                else if (distance > (Radius / Hexasphere.RegionDivisions) * 3) // Don't unload closest regions - player might turn
+                else if (distance > (Radius / Hexasphere.RegionDivisions) * 2) // Don't unload closest regions - player might turn
                 {
                     if (loadedRegions.ContainsKey(region))
                     {
@@ -59,12 +59,15 @@ namespace PlanetGeneration
 
         IEnumerator LoadRegions()
         {
+            var priorityThreshold = Mathf.Sqrt(Hexasphere.Regions[0].GetTiles().Count) * 3;
+
             while(true)
             {
                 if (regionQueue.IsEmpty()) { yield return null; continue; }
 
                 var priority = regionQueue.PeekAtPriority();
-                var tilesPerFrame = (priority < 20) ? 200 : 10;
+                var tilesPerFrame = 1000; //(priority < priorityThreshold) ? 200 : 1;
+                Debug.Log(tilesPerFrame);
 
                 var region = regionQueue.Dequeue();
 
