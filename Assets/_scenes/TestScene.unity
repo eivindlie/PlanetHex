@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -191,6 +191,7 @@ GameObject:
   - component: {fileID: 1550490798}
   - component: {fileID: 1550490793}
   - component: {fileID: 1550490799}
+  - component: {fileID: 1550490792}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -198,6 +199,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1550490792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1550490791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28613712232b3204b9b39efee6bf2c83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Planet: {fileID: 1951638618}
+  Camera: {fileID: 1609402579}
 --- !u!114 &1550490793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -434,7 +448,6 @@ MonoBehaviour:
   Radius: 170
   TerrainHeight: 60
   HeightLimit: 80
-  NumDivisions: 80
   Player: {fileID: 1550490791}
   Materials:
   - {fileID: 2100000, guid: 5c5f5230d73545c4a92c1a000b3d6c3f, type: 2}

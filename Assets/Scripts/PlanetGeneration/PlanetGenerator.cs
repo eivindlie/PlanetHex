@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 using Utilities;
 
 namespace PlanetGeneration
@@ -113,7 +114,7 @@ namespace PlanetGeneration
                     {
                         if(chunk.Blocks[j,h] == 1)
                         {
-                            var block = CreateBlock(tile, chunk.ID * Chunk.CHUNK_HEIGHT + h);
+                            var block = CreateBlock(tile, chunk.ID * Chunk.CHUNK_HEIGHT + h, "block_" + j + "_" + h);
                             block.transform.parent = chunkGameObject.transform;
                         }
                     }
@@ -138,9 +139,26 @@ namespace PlanetGeneration
             }
         }
 
-        GameObject CreateBlock(Tile tile, int height)
+        public void RemoveBlock(GameObject block)
         {
-            var block = new GameObject("Block");
+            try
+            {
+                var block_index = int.Parse(block.name.Split('_')[1]);
+                var block_height = int.Parse(block.name.Split('_')[2]);
+                var chunk_index = int.Parse(block.transform.parent.gameObject.name.Split('_')[1]);
+                var region_index = int.Parse(block.transform.parent.parent.gameObject.name.Split('_')[1]);
+                Regions[region_index].Chunks[chunk_index].Blocks[block_index, block_height] = 0;
+                Destroy(block);
+            }
+            catch(IndexOutOfRangeException e)
+            {
+                return;
+            }
+        }
+
+        GameObject CreateBlock(Tile tile, int height, string name = "Block")
+        {
+            var block = new GameObject(name);
             block.AddComponent<MeshFilter>();
             block.AddComponent<MeshRenderer>();
             block.AddComponent<MeshCollider>();
