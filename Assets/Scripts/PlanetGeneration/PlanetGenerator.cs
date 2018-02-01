@@ -61,7 +61,7 @@ namespace PlanetGeneration
             var i = 0;
             foreach (Tile tile in region.GetTiles())
             {
-                var height = Mathf.Max(TerrainHeight - NoiseGenerator.getDensity(tile.Center.AsVector(), 0, TerrainHeight, octaves: 3, persistence: 0.85f), 0);
+                var height = Mathf.Max(TerrainHeight - NoiseGenerator.getDensity(tile.Center.AsVector(), 0, TerrainHeight, octaves: 3, persistence: 0.60f, multiplier: Radius / 2), 0);
                 for (var y = 0; y <= height; y++)
                 {
                     var block = CreateBlock(tile, y);
