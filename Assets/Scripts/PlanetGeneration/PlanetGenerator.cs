@@ -13,20 +13,24 @@ namespace PlanetGeneration
         public int Radius;
         public int TerrainHeight;
         public int HeightLimit;
-        public int NumDivisions;
+        private int NumDivisions;
 
-        public GameObject player;
-        public Material[] materials;
+        public GameObject Player;
+        public Material[] Materials;
         public Region[] Regions;
 
-        private PriorityQueue<Region> regionQueue;
+        private GameObject PlanetSphere;
+        private PriorityQueue<Chunk> ChunkQueue;
         private SimplexNoiseGenerator NoiseGenerator = new SimplexNoiseGenerator();
         private Hexasphere Hexasphere;
-        private Dictionary<Region, GameObject> loadedRegions;
+        private Dictionary<Chunk, GameObject> LoadedChunks;
         private IEnumerator RegionLoader;
 
         void Start()
         {
+            NumDivisions = (int)Mathf.Sqrt((Mathf.PI * Mathf.Pow(Radius, 2)) / 5);
+            Debug.Log("Subdivisions: " + NumDivisions);
+
             HeightLimit = TerrainHeight + 20;
             Hexasphere = new Hexasphere(Radius, NumDivisions);
             Regions = Hexasphere.Regions;
@@ -35,8 +39,12 @@ namespace PlanetGeneration
                 region.GenerateTerrain(NoiseGenerator, TerrainHeight, HeightLimit, Radius);
             }
 
-            loadedRegions = new Dictionary<Region, GameObject>();
-            regionQueue = new PriorityQueue<Region>();
+            LoadedChunks = new Dictionary<Chunk, GameObject>();
+            ChunkQueue = new PriorityQueue<Chunk>();
+            PlanetSphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            PlanetSphere.name = "PlanetSphere";
+            PlanetSphere.transform.localScale = new Vector3(2*Radius, 2*Radius, 2*Radius);
+            PlanetSphere.transform.parent = transform;
 
             RegionLoader = LoadRegions();
             StartCoroutine(RegionLoader);
@@ -44,24 +52,27 @@ namespace PlanetGeneration
 
         void Update()
         {
-            var pos = (player.transform.position - this.transform.position).normalized * Radius;
+            var pos = Player.transform.position;//(player.transform.position - this.transform.position).normalized * Radius;
 
             foreach (var region in Regions)
             {
-                var distance = (region.Center - pos).magnitude;
-                if (distance < (Radius / Hexasphere.RegionDivisions))
+                foreach(var chunk in region.Chunks)
                 {
-                    if (!loadedRegions.ContainsKey(region))
+                    var distance = (chunk.Center - pos).magnitude;
+                    if (distance < (Radius / Hexasphere.RegionDivisions) * 1.2)
                     {
-                        loadedRegions[region] = null;
-                        regionQueue.Enqueue(region, distance);
+                        if (!LoadedChunks.ContainsKey(chunk))
+                        {
+                            LoadedChunks[chunk] = null;
+                            ChunkQueue.Enqueue(chunk, distance);
+                        }
                     }
-                }
-                else if (distance > (Radius / Hexasphere.RegionDivisions) * 2) // Don't unload closest regions - player might turn
-                {
-                    if (loadedRegions.ContainsKey(region))
+                    else if (distance > (Radius / Hexasphere.RegionDivisions) * 2) // Don't unload closest regions - player might turn
                     {
-                        UnloadRegion(region);
+                        if (LoadedChunks.ContainsKey(chunk))
+                        {
+                            UnloadChunk(chunk);
+                        }
                     }
                 }
             }
@@ -73,28 +84,37 @@ namespace PlanetGeneration
 
             while(true)
             {
-                if (regionQueue.IsEmpty()) { yield return null; continue; }
+                if (ChunkQueue.IsEmpty()) { yield return null; continue; }
 
-                var priority = regionQueue.PeekAtPriority();
+                var priority = ChunkQueue.PeekAtPriority();
                 var tilesPerFrame = 1000; //(priority < priorityThreshold) ? 200 : 1;
 
-                var region = regionQueue.Dequeue();
+                var chunk = ChunkQueue.Dequeue();
 
-                var regionGameObject = new GameObject("region_" + region.ID);
-                regionGameObject.transform.parent = this.transform;
-                var i = 0;
-                for (var j = 0; j < region.GetTiles().Count; j++)
+                var regionTransform = transform.Find("region_" + chunk.ParentRegion.ID);
+                GameObject regionGameObject;
+                if (regionTransform == null)
                 {
-                    var tile = region.GetTiles()[j];
-                    for (var c = 0; c < region.Chunks.Length; c++)
+                    regionGameObject = new GameObject("region_" + chunk.ParentRegion.ID);
+                    regionGameObject.transform.parent = this.transform;
+                }
+                else
+                {
+                    regionGameObject = regionTransform.gameObject;
+                }
+                var chunkGameObject = new GameObject("chunk_" + chunk.ID);
+                chunkGameObject.transform.parent = regionGameObject.transform;
+
+                var i = 0;
+                for (var j = 0; j < chunk.ParentRegion.GetTiles().Count; j++)
+                {
+                    var tile = chunk.ParentRegion.GetTiles()[j];
+                    for (var h = 0; h < Chunk.CHUNK_HEIGHT; h++)
                     {
-                        for (var h = 0; h < Chunk.CHUNK_HEIGHT; h++)
+                        if(chunk.Blocks[j,h] == 1)
                         {
-                            if(region.Chunks[c].Blocks[j,h] == 1)
-                            {
-                                var block = CreateBlock(tile, c * Chunk.CHUNK_HEIGHT + h);
-                                block.transform.parent = regionGameObject.transform;
-                            }
+                            var block = CreateBlock(tile, chunk.ID * Chunk.CHUNK_HEIGHT + h);
+                            block.transform.parent = chunkGameObject.transform;
                         }
                     }
                     i++;
@@ -104,17 +124,17 @@ namespace PlanetGeneration
                         yield return null;
                     }
                 }
-                loadedRegions[region] = regionGameObject;
+                LoadedChunks[chunk] = chunkGameObject;
             }
 
         }
 
-        void UnloadRegion(Region region)
+        void UnloadChunk(Chunk chunk)
         {
-            if (loadedRegions.ContainsKey(region))
+            if (LoadedChunks.ContainsKey(chunk))
             {
-                Destroy(loadedRegions[region]);
-                loadedRegions.Remove(region);
+                Destroy(LoadedChunks[chunk]);
+                LoadedChunks.Remove(chunk);
             }
         }
 
@@ -134,7 +154,7 @@ namespace PlanetGeneration
             var meshRenderer = block.GetComponent<MeshRenderer>();
             if (tile.Region != -1)
             {
-                meshRenderer.material = materials[tile.Region % materials.Length];
+                meshRenderer.material = Materials[tile.Region % Materials.Length];
             }
 
             block.transform.position = tile.Center.Project(Radius + height).AsVector();

@@ -1,15 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class Chunk
+namespace PlanetGeneration
 {
-    public Vector3 Center;
-    public int[,] Blocks;
-    public const int CHUNK_HEIGHT = 10;
-
-    public Chunk(Vector3 center, int numTiles)
+    public class Chunk
     {
-        this.Center = center;
-        this.Blocks = new int[numTiles,CHUNK_HEIGHT];
+        public Vector3 Center;
+        public int[,] Blocks;
+        public const int CHUNK_HEIGHT = 10;
+        public int ID;
+        public Region ParentRegion;
+
+        public Chunk(Vector3 center, int numTiles, int ID, Region parentRegion)
+        {
+            this.Center = center;
+            this.Blocks = new int[numTiles,CHUNK_HEIGHT];
+            this.ID = ID;
+            this.ParentRegion = parentRegion;
+        }
     }
 }

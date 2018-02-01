@@ -21,7 +21,7 @@ namespace PlanetGeneration
         {
             var chunkHeight = Mathf.CeilToInt(heightLimit / Chunk.CHUNK_HEIGHT);
             Chunks = new Chunk[chunkHeight];
-            for (var i = 0; i < chunkHeight; i++) Chunks[i] = new Chunk(Center + Center.normalized * Chunk.CHUNK_HEIGHT * i, Tiles.Count);
+            for (var i = 0; i < chunkHeight; i++) Chunks[i] = new Chunk(Center + Center.normalized * Chunk.CHUNK_HEIGHT * i, Tiles.Count, i, this);
 
             for(var i = 0; i < Tiles.Count; i++) {
                 var tile = Tiles[i];

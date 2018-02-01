@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -433,14 +433,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Radius: 170
   TerrainHeight: 60
-  NumDivisions: 60
-  player: {fileID: 1550490791}
-  materials:
+  HeightLimit: 80
+  NumDivisions: 80
+  Player: {fileID: 1550490791}
+  Materials:
   - {fileID: 2100000, guid: 5c5f5230d73545c4a92c1a000b3d6c3f, type: 2}
   - {fileID: 2100000, guid: ba29141ce25df63499131eee54a223a5, type: 2}
   - {fileID: 2100000, guid: db3c9265bdcc2874db1b68f024ed6b4f, type: 2}
   - {fileID: 2100000, guid: fbf00ca72cf051640bd67f18a9955cca, type: 2}
   - {fileID: 2100000, guid: 81fd0c7010870a74280edaeaf12b0be8, type: 2}
   - {fileID: 2100000, guid: 09ad0cd879e247e4eb2a9373bdf3a79e, type: 2}
-  - {fileID: 2100000, guid: 02395ce32d2f9cb40b54a626b16f2173, type: 2}
   - {fileID: 2100000, guid: c128ce654adc6ed48bbeaef31b2f49fa, type: 2}
+  - {fileID: 2100000, guid: 02395ce32d2f9cb40b54a626b16f2173, type: 2}
