@@ -92,7 +92,7 @@ namespace PlanetGeneration
                         {
                             if(region.Chunks[c].Blocks[j,h] == 1)
                             {
-                                var block = CreateBlock(tile, c + h);
+                                var block = CreateBlock(tile, c * Chunk.CHUNK_HEIGHT + h);
                                 block.transform.parent = regionGameObject.transform;
                             }
                         }
