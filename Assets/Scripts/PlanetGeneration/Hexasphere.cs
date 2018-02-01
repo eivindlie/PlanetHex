@@ -15,7 +15,7 @@ namespace PlanetGeneration
         private float HexSize;
         private float Radius;
 
-        private const int TILES_PER_REGION = 512;
+        private const int TILES_PER_REGION = 256;
 
         public Region[] Regions;
 
