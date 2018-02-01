@@ -41,7 +41,8 @@ namespace PlanetGeneration
                         regionCoroutines[region] = LoadRegion(region);
                         StartCoroutine(regionCoroutines[region]);
                     }
-                } else
+                }
+                else if ((region.Center - pos).magnitude > (Radius / Hexasphere.RegionDivisions) * 2) // Don't unload closest regions - player might turn
                 {
                     if (loadedRegions.ContainsKey(region))
                     {
@@ -52,10 +53,11 @@ namespace PlanetGeneration
             }
         }
 
-        IEnumerator LoadRegion(Region region, int tilesPerFrame = 100)
+        IEnumerator LoadRegion(Region region, int tilesPerFrame = 20)
         {
             var regionGameObject = new GameObject("region_" + region.ID);
             regionGameObject.transform.parent = this.transform;
+            loadedRegions.Add(region, regionGameObject);
             var i = 0;
             foreach (Tile tile in region.GetTiles())
             {
@@ -72,7 +74,6 @@ namespace PlanetGeneration
                     yield return null;
                 }
             }
-            loadedRegions.Add(region, regionGameObject);
         }
 
         void UnloadRegion(Region region)
