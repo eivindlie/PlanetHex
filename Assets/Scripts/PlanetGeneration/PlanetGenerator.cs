@@ -112,7 +112,7 @@ namespace PlanetGeneration
                     var tile = chunk.ParentRegion.GetTiles()[j];
                     for (var h = 0; h < Chunk.CHUNK_HEIGHT; h++)
                     {
-                        if(chunk.Blocks[j,h] == 1)
+                        if(chunk.GetBlock(j,h) == 1)
                         {
                             var block = CreateBlock(tile, chunk.ID * Chunk.CHUNK_HEIGHT + h, "block_" + j + "_" + h);
                             block.transform.parent = chunkGameObject.transform;
@@ -147,7 +147,7 @@ namespace PlanetGeneration
                 var block_height = int.Parse(block.name.Split('_')[2]);
                 var chunk_index = int.Parse(block.transform.parent.gameObject.name.Split('_')[1]);
                 var region_index = int.Parse(block.transform.parent.parent.gameObject.name.Split('_')[1]);
-                Regions[region_index].Chunks[chunk_index].Blocks[block_index, block_height] = 0;
+                Regions[region_index].Chunks[chunk_index].SetBlock(block_index, block_height, 0);
                 Destroy(block);
             }
             catch(IndexOutOfRangeException e)

@@ -33,13 +33,14 @@ namespace PlanetGeneration
                     {
                         if(j * Chunk.CHUNK_HEIGHT + h < height)
                         {
-                            Chunks[j].Blocks[i,h] = 1;
+                            Chunks[j].SetBlock(i, h, 1, false);
                         }
                         else
                         {
-                            Chunks[j].Blocks[i, h] = 0;
+                            Chunks[j].SetBlock(i, h, 0, false);
                         }
                     }
+                    Chunks[j].CheckForEmptiness();
                 }
             }
         }
