@@ -208,8 +208,9 @@ namespace PlanetGeneration
                 }
                 if (i == count - 1)
                 {
-                    next++;
+                    next += 2;
                 }
+
 
                 tris.Add(vertexIndex); tris.Add((vertexIndex + next) % offset); tris.Add(vertexIndex + offset);
                 tris.Add((vertexIndex + next) % offset); tris.Add((vertexIndex + next) % offset + offset); tris.Add(vertexIndex + offset);
@@ -229,10 +230,64 @@ namespace PlanetGeneration
                 tris.Add(offset + 8); tris.Add(offset + 10); tris.Add(offset + 1);
             }
 
+            Vector2[] uvs = null;
+            if (count == 5)
+            {
+                uvs = new Vector2[] {
+                    new Vector2(),
+                    new Vector2(),
+                    new Vector2(),
+                    new Vector2(),
+                    new Vector2(),
+                    new Vector2(),
+                    new Vector2(),
+                    new Vector2(),
+                    new Vector2(),
+                    new Vector2(),
+                    new Vector2(),
+                    new Vector2(),
+                    new Vector2(),
+                    new Vector2(),
+                    new Vector2(),
+                    new Vector2(),
+                    new Vector2(),
+                    new Vector2(),
+                };
+            }
+            else if (count == 6)
+            {
+                uvs = new Vector2[]
+                {
+                    new Vector2(1, 0.2887f),
+                    new Vector2(0.9166f, 0.1444f),
+                    new Vector2(0, 0.2887f),
+                    new Vector2(0.8332f, 0.2887f),
+                    new Vector2(0.6666f, 0.2887f),
+                    new Vector2(0.5f, 0.2887f),
+                    new Vector2(0.5833f, 0.1444f),
+                    new Vector2(0.3333f, 0.2887f),
+                    new Vector2(0.6666f, 0),
+                    new Vector2(0.1667f, 0.2887f),
+                    new Vector2(0.8332f, 0),
+                    new Vector2(1, 0.4553f),
+                    new Vector2(0.9166f, 0.5996f),
+                    new Vector2(0, 0.4553f),
+                    new Vector2(0.8332f, 0.4553f),
+                    new Vector2(0.6666f, 0.4553f),
+                    new Vector2(0.5f, 0.4553f),
+                    new Vector2(0.5833f, 0.5996f),
+                    new Vector2(0.3333f, 0.4453f),
+                    new Vector2(0.6666f, 0.7439f),
+                    new Vector2(0.1667f, 0.4553f),
+                    new Vector2(0.8332f, 0.7436f),
+                };
+            }
+
             var mesh = new Mesh()
             {
                 vertices = vertices,
-                triangles = tris.ToArray()
+                triangles = tris.ToArray(),
+                uv = uvs
             };
             mesh.RecalculateNormals();
             return mesh;
