@@ -42,7 +42,7 @@ public class CharacterMove : MonoBehaviour {
 
         var rotX = camera.transform.localRotation.eulerAngles.x;
         rotX += mouseY * mouseSensitivity * Time.deltaTime;
-        rotX = Mathf.Clamp(rotX, -mouseClampAngle, mouseClampAngle);
+        //rotX = Mathf.Clamp(rotX, -mouseClampAngle, mouseClampAngle);
         camera.transform.localRotation = Quaternion.Euler(rotX, 0, 0);
 
         var rotY = mouseX * mouseSensitivity * Time.deltaTime;
