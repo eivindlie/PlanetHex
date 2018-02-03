@@ -182,29 +182,51 @@ namespace PlanetGeneration
         Mesh CreateMesh(Tile tile, int height = 0)
         {
             var count = tile.Boundary.Count;
-            var vertices = new Vector3[count * 2];
+            var offset = count * 2 - 1;
+
+
+            var vertices = new Vector3[offset * 2];
             var tris = new List<int>();
             var pos = tile.Center.Project(Radius + height).AsVector();
+            var vertexIndex = 0;
             for (var i = 0; i < tile.Boundary.Count; i++)
             {
-                vertices[i] = tile.Boundary[i].Project(Radius + height).AsVector() - pos;
-                vertices[count + i] = tile.Boundary[i].Project(Radius + height + 1).AsVector() - pos;
+                vertices[vertexIndex] = tile.Boundary[i].Project(Radius + height).AsVector() - pos;
+                vertices[offset + vertexIndex] = tile.Boundary[i].Project(Radius + height + 1).AsVector() - pos;
+                var next = 1;
+                if (i != 1 && i != 2)
+                {
+                    next++;
+                    vertices[vertexIndex + 1] = tile.Boundary[i].Project(Radius + height).AsVector() - pos;
+                    vertices[offset + vertexIndex + 1] = tile.Boundary[i].Project(Radius + height + 1).AsVector() - pos;
+                }
+                if (i == 0)
+                {
+                    next++;
+                    vertices[vertexIndex + 2] = tile.Boundary[i].Project(Radius + height).AsVector() - pos;
+                    vertices[offset + vertexIndex + 2] = tile.Boundary[i].Project(Radius + height + 1).AsVector() - pos;
+                }
+                if (i == count - 1)
+                {
+                    next++;
+                }
 
-                tris.Add(i); tris.Add((i + 1) % count); tris.Add(i + count);
-                tris.Add((i + 1) % count); tris.Add((i + 1) % count + count); tris.Add(i + count);
+                tris.Add(vertexIndex); tris.Add((vertexIndex + next) % offset); tris.Add(vertexIndex + offset);
+                tris.Add((vertexIndex + next) % offset); tris.Add((vertexIndex + next) % offset + offset); tris.Add(vertexIndex + offset);
+                vertexIndex += next;
             }
 
-            tris.Add(0); tris.Add(2); tris.Add(1);
-            tris.Add(count); tris.Add(count + 1); tris.Add(count + 2);
-            tris.Add(2); tris.Add(4); tris.Add(3);
-            tris.Add(count + 2); tris.Add(count + 3); tris.Add(count + 4);
-            tris.Add(4); tris.Add(2); tris.Add(0);
-            tris.Add(count + 4); tris.Add(count); tris.Add(count + 2);
+            tris.Add(1); tris.Add(4); tris.Add(3);
+            tris.Add(offset + 1); tris.Add(offset + 3); tris.Add(offset + 4);
+            tris.Add(4); tris.Add(8); tris.Add(6);
+            tris.Add(offset + 4); tris.Add(offset + 6); tris.Add(offset + 8);
+            tris.Add(8); tris.Add(4); tris.Add(1);
+            tris.Add(offset + 8); tris.Add(offset + 1); tris.Add(offset + 4);
 
             if (tile.Boundary.Count > 5)
             {
-                tris.Add(4); tris.Add(0); tris.Add(5);
-                tris.Add(count + 4); tris.Add(count + 5); tris.Add(count);
+                tris.Add(8); tris.Add(1); tris.Add(10);
+                tris.Add(offset + 8); tris.Add(offset + 10); tris.Add(offset + 1);
             }
 
             var mesh = new Mesh()
