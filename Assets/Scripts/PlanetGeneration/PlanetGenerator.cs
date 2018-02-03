@@ -139,7 +139,7 @@ namespace PlanetGeneration
             }
         }
 
-        public void RemoveBlock(GameObject block)
+        public void RemoveBlock(GameObject block, bool removeNonDestructible = false)
         {
             try
             {
@@ -147,8 +147,11 @@ namespace PlanetGeneration
                 var block_height = int.Parse(block.name.Split('_')[2]);
                 var chunk_index = int.Parse(block.transform.parent.gameObject.name.Split('_')[1]);
                 var region_index = int.Parse(block.transform.parent.parent.gameObject.name.Split('_')[1]);
-                Regions[region_index].Chunks[chunk_index].SetBlock(block_index, block_height, 0);
-                Destroy(block);
+                if (removeNonDestructible || Regions[region_index].Chunks[chunk_index].GetBlock(block_index, block_height) != 1)
+                {
+                    Regions[region_index].Chunks[chunk_index].SetBlock(block_index, block_height, 0);
+                    Destroy(block);
+                }
             }
             catch(IndexOutOfRangeException e)
             {
