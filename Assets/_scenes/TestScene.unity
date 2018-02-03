@@ -447,7 +447,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1550490791}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 235, z: 0}
+  m_LocalPosition: {x: 0, y: 45, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1609402576}
@@ -607,9 +607,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7298be5016f54ef48a3128aa9ef0bab8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Radius: 170
-  TerrainHeight: 60
-  HeightLimit: 80
+  Radius: 25
+  TerrainHeight: 15
+  HeightLimit: 50
   Player: {fileID: 1550490791}
   Materials:
   - {fileID: 2100000, guid: 6915cfca8f2a71949a9fb95baaa6ec93, type: 2}
