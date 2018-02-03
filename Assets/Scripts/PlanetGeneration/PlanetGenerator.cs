@@ -112,7 +112,7 @@ namespace PlanetGeneration
                     var tile = chunk.ParentRegion.GetTiles()[j];
                     for (var h = 0; h < Chunk.CHUNK_HEIGHT; h++)
                     {
-                        if(chunk.GetBlock(j,h) == 1)
+                        if(chunk.GetBlock(j,h) != 0)
                         {
                             var block = CreateBlock(tile, chunk.ID * Chunk.CHUNK_HEIGHT + h, "block_" + j + "_" + h);
                             block.transform.parent = chunkGameObject.transform;

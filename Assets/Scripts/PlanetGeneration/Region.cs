@@ -31,9 +31,13 @@ namespace PlanetGeneration
                 {
                     for (var h = 0; h < Chunk.CHUNK_HEIGHT; h++)
                     {
-                        if(j * Chunk.CHUNK_HEIGHT + h < height)
+                        if (j == 0 && h == 0)
                         {
                             Chunks[j].SetBlock(i, h, 1, false);
+                        }
+                        else if(j * Chunk.CHUNK_HEIGHT + h < height)
+                        {
+                            Chunks[j].SetBlock(i, h, 2, false);
                         }
                         else
                         {
