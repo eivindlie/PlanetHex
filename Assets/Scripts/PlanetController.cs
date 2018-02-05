@@ -4,6 +4,7 @@ using PlanetGeneration;
 using Utilities;
 using System.Collections.Generic;
 using System;
+using Blocks;
 
 public class PlanetController : MonoBehaviour
 {
@@ -89,10 +90,11 @@ public class PlanetController : MonoBehaviour
                 var tile = chunk.ParentRegion.GetTiles()[j];
                 for (var h = 0; h < Chunk.CHUNK_HEIGHT; h++)
                 {
-                    if (chunk.GetBlock(j, h) != 0)
+                    var block = BlockList.Blocks[chunk.GetBlock(j, h)];
+                    if (block.Rendered)
                     {
-                        var block = CreateBlock(tile, chunk.ID * Chunk.CHUNK_HEIGHT + h, "block_" + j + "_" + h);
-                        block.transform.parent = chunkGameObject.transform;
+                        var blockObject = CreateBlock(tile, block, chunk.ID * Chunk.CHUNK_HEIGHT + h, "block_" + j + "_" + h);
+                        blockObject.transform.parent = chunkGameObject.transform;
                     }
                 }
                 i++;
@@ -136,27 +138,24 @@ public class PlanetController : MonoBehaviour
         }
     }
 
-    public GameObject CreateBlock(Tile tile, int height, string name = "Block")
+    public GameObject CreateBlock(Tile tile, Block block, int height, string name = "Block")
     {
-        var block = new GameObject(name);
-        block.AddComponent<MeshFilter>();
-        block.AddComponent<MeshRenderer>();
-        block.AddComponent<MeshCollider>();
+        var blockObject = new GameObject(name);
+        blockObject.AddComponent<MeshFilter>();
+        blockObject.AddComponent<MeshRenderer>();
+        blockObject.AddComponent<MeshCollider>();
 
         var mesh = CreateMesh(tile, height);
-        block.GetComponent<MeshFilter>().mesh = mesh;
+        blockObject.GetComponent<MeshFilter>().mesh = mesh;
 
-        var meshCollider = block.GetComponent<MeshCollider>();
+        var meshCollider = blockObject.GetComponent<MeshCollider>();
         meshCollider.sharedMesh = mesh;
 
-        var meshRenderer = block.GetComponent<MeshRenderer>();
-        if (tile.Region != -1)
-        {
-            meshRenderer.material = Material;
-        }
+        var meshRenderer = blockObject.GetComponent<MeshRenderer>();
+        meshRenderer.material = block.Material;
 
-        block.transform.position = tile.Center.Project(Radius + height).AsVector();
-        return block;
+        blockObject.transform.position = tile.Center.Project(Radius + height).AsVector();
+        return blockObject;
     }
 
     private Mesh CreateMesh(Tile tile, int height = 0)
