@@ -6,12 +6,12 @@ using PlanetGeneration;
 public class PlayerController : MonoBehaviour {
 
     private GameObject SelectedObject;
-    private PlanetGenerator PlanetGenerator;
+    private PlanetController PlanetController;
     public GameObject Planet;
     public Camera Camera;
 
 	void Start () {
-        PlanetGenerator = Planet.GetComponent<PlanetGenerator>();
+        PlanetController = Planet.GetComponent<PlanetController>();
 	}
 	
 	void Update () {
@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour {
         {
             if(SelectedObject != null)
             {
-                PlanetGenerator.RemoveBlock(SelectedObject);
+                PlanetController.RemoveBlock(SelectedObject);
             }
         }
 	}

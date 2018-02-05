@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -194,7 +194,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 745200413}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 525.5, y: 267.5, z: 0}
+  m_LocalPosition: {x: 394.5, y: 212.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1241410623}
@@ -604,12 +604,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1951638618}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7298be5016f54ef48a3128aa9ef0bab8, type: 3}
+  m_Script: {fileID: 11500000, guid: 88396b48db5e4534da68c07d66a9ec89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 1550490791}
   Radius: 25
   TerrainHeight: 15
-  HeightLimit: 50
-  Player: {fileID: 1550490791}
-  Materials:
-  - {fileID: 2100000, guid: 6915cfca8f2a71949a9fb95baaa6ec93, type: 2}
+  Material: {fileID: 2100000, guid: 6915cfca8f2a71949a9fb95baaa6ec93, type: 2}
