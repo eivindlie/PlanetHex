@@ -6,7 +6,7 @@ namespace Blocks
     {
         public Checkered()
         {
-
+            Material = AssetLoader.blockMaterialBundle.LoadAsset("Checkered", typeof(Material)) as Material;
         }
     }
 }
