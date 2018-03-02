@@ -4,18 +4,26 @@ using UnityEngine;
 
 public class GravityPull : MonoBehaviour {
 
+    private static double gravityConstant = 0.1;
+
     public GameObject gravityCenter;
+
+    private PlanetController planetController;
 
     Rigidbody rigidbody;
 
 	// Use this for initialization
 	void Start () {
         this.rigidbody = GetComponent<Rigidbody>();
+        this.planetController = gravityCenter.GetComponent<PlanetController>();
     }
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        var direction = (gravityCenter.transform.position - transform.position).normalized;
-        rigidbody.AddForce(direction * 9.81f * rigidbody.mass);
+        var r = gravityCenter.transform.position - transform.position;
+        var direction = r.normalized;
+        var distance = r.magnitude;
+        var g = (float) (gravityConstant * planetController.Mass * rigidbody.mass) / Mathf.Pow(distance, 2);
+        rigidbody.AddForce(direction * g * rigidbody.mass);
 	}
 }

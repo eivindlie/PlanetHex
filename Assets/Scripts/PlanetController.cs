@@ -10,8 +10,11 @@ public class PlanetController : MonoBehaviour
 {
     public GameObject Player;
     public int Radius;
+    public int Mass;
     public int TerrainHeight;
     public Material Material;
+
+    private int Density = 1;
 
     private Region[] Regions;
     private PriorityQueue<Chunk> ChunkQueue;
@@ -21,6 +24,8 @@ public class PlanetController : MonoBehaviour
     void Start()
     {
         Regions = PlanetGenerator.Generate(Radius, TerrainHeight);
+
+        Mass = (int) (Density * 4 * Mathf.PI * Mathf.Pow(Radius, 3)) / 3;
 
         LoadedChunks = new Dictionary<Chunk, GameObject>();
         ChunkQueue = new PriorityQueue<Chunk>();
