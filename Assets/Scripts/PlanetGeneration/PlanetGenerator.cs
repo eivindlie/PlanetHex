@@ -13,7 +13,7 @@ namespace PlanetGeneration
     {
         public Material[] Materials;
 
-        public static Region[] Generate(int radius, int terrainHeight, int? heightLimit0 = null)
+        public static Planet Generate(int radius, int terrainHeight, int? heightLimit0 = null)
         {
             int numDivisions = (int)Mathf.Sqrt((Mathf.PI * Mathf.Pow(radius, 2)) / 5);
 
@@ -29,7 +29,10 @@ namespace PlanetGeneration
                 region.GenerateTerrain(noiseGenerator, terrainHeight, heightLimit, radius);
             }
 
-            return regions;
+            var planet = new Planet(radius, terrainHeight);
+            planet.Regions = regions;
+
+            return planet;
         }
     }
 }

@@ -14,18 +14,15 @@ public class PlanetController : MonoBehaviour
     public int TerrainHeight;
     public Material Material;
 
-    private int Density = 1;
-
-    private Region[] Regions;
+    private Planet Planet;
     private PriorityQueue<Chunk> ChunkQueue;
     private Dictionary<Chunk, GameObject> LoadedChunks;
     private IEnumerator RegionLoader;
 
     void Start()
     {
-        Regions = PlanetGenerator.Generate(Radius, TerrainHeight);
-
-        Mass = (int) (Density * 4 * Mathf.PI * Mathf.Pow(Radius, 3)) / 3;
+        Planet = PlanetGenerator.Generate(Radius, TerrainHeight);
+        Mass = Planet.Mass;
 
         LoadedChunks = new Dictionary<Chunk, GameObject>();
         ChunkQueue = new PriorityQueue<Chunk>();
@@ -38,7 +35,7 @@ public class PlanetController : MonoBehaviour
     {
         var pos = Player.transform.position;//(player.transform.position - this.transform.position).normalized * Radius;
 
-        foreach (var region in Regions)
+        foreach (var region in Planet.Regions)
         {
             foreach (var chunk in region.Chunks)
             {
@@ -64,7 +61,7 @@ public class PlanetController : MonoBehaviour
 
     IEnumerator LoadRegions()
     {
-        var priorityThreshold = Mathf.Sqrt(Regions[0].GetTiles().Count) * 3;
+        var priorityThreshold = Mathf.Sqrt(Planet.Regions[0].GetTiles().Count) * 3;
 
         while (true)
         {
@@ -131,9 +128,9 @@ public class PlanetController : MonoBehaviour
             var block_height = int.Parse(block.name.Split('_')[2]);
             var chunk_index = int.Parse(block.transform.parent.gameObject.name.Split('_')[1]);
             var region_index = int.Parse(block.transform.parent.parent.gameObject.name.Split('_')[1]);
-            if (removeNonDestructible || Regions[region_index].Chunks[chunk_index].GetBlock(block_index, block_height) != 1)
+            if (removeNonDestructible || Planet.Regions[region_index].Chunks[chunk_index].GetBlock(block_index, block_height) != 1)
             {
-                Regions[region_index].Chunks[chunk_index].SetBlock(block_index, block_height, 0);
+                Planet.Regions[region_index].Chunks[chunk_index].SetBlock(block_index, block_height, 0);
                 Destroy(block);
             }
         }
