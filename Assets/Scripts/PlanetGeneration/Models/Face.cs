@@ -50,5 +50,10 @@ namespace PlanetGeneration.Models
             }
             return count == 2;
         }
+
+        public override string ToString()
+        {
+            return $"Face({Points[0]}, {Points[1]}, {Points[2]})";
+        }
     }
 }

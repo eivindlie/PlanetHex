@@ -89,6 +89,11 @@ namespace PlanetGeneration.Models
             return ret;
         }
 
+        public override string ToString()
+        {
+            return $"Point({X:F2}, {Y:F2}, {Z:F2})";
+        }
+
         public Vector3 AsVector()
         {
             return new Vector3(X, Y, Z);
