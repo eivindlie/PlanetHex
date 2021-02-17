@@ -156,7 +156,7 @@ namespace PlanetGeneration
 
             var newFaces = new List<Face>();
 
-            for (var i = 0; i < divisions; i++)
+            for (var i = 1; i < divisions; i++)
             {
                 var previousRow = currentRow;
                 currentRow = SubdivideEdgeBetweenPoints(leftEdge[i], rightEdge[i], i, addPoint);
@@ -186,7 +186,7 @@ namespace PlanetGeneration
         {
             var points = new List<Point> { p1 };
 
-            for (var i = 0; i < divisions; i++)
+            for (var i = 1; i < divisions; i++)
             {
                 var ratio = (float) i / divisions;
                 var newPoint = addPoint(Segment(p1, p2, ratio));
