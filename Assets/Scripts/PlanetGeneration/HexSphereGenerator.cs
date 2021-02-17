@@ -209,7 +209,7 @@ namespace PlanetGeneration
             {
                 var center = p;
                 var faces = center.GetOrderedFaces();
-                var boundaryPoints = faces.Select(f => Segment(f.Centroid, center, hexSize)).ToList();
+                var boundaryPoints = faces.Select(f => Segment(center, f.Centroid, hexSize)).ToList();
 
                 var tile = new Tile
                 {
