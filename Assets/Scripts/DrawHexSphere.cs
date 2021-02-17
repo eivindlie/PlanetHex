@@ -5,7 +5,7 @@ using PlanetGeneration;
 
 using UnityEngine;
 
-public class DrawHexasphere : MonoBehaviour
+public class DrawHexSphere : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()

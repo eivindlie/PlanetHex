@@ -12,107 +12,635 @@ AssetImportWorker0
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-51305
+59065
 Successfully changed project path to: /Users/Eivind/workspaces/privat/planethex
 /Users/Eivind/workspaces/privat/planethex
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 22.86 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 30.79 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.2.4f1 (becced5a802b)
 [Subsystems] Discovering subsystems at path /Applications/Unity/Hub/Editor/2020.2.4f1/Unity.app/Contents/Resources/UnitySubsystems
 [Subsystems] Discovering subsystems at path /Users/Eivind/workspaces/privat/planethex/Assets
 GfxDevice: creating device client; threaded=0
-2021-02-16 15:41:19.473 Unity[41539:1082208] C27JG5x preferred device: AMD Radeon Pro 5500M (high power)
-2021-02-16 15:41:19.473 Unity[41539:1082208] Metal devices available: 2
-2021-02-16 15:41:19.473 Unity[41539:1082208] 0: AMD Radeon Pro 5500M (high power)
-2021-02-16 15:41:19.473 Unity[41539:1082208] 1: Intel(R) UHD Graphics 630 (low power)
-2021-02-16 15:41:19.475 Unity[41539:1082208] Using device AMD Radeon Pro 5500M (high power)
+2021-02-17 18:07:35.074 Unity[18317:1933601] C27JG5x preferred device: AMD Radeon Pro 5500M (high power)
+2021-02-17 18:07:35.074 Unity[18317:1933601] Metal devices available: 2
+2021-02-17 18:07:35.074 Unity[18317:1933601] 0: AMD Radeon Pro 5500M (high power)
+2021-02-17 18:07:35.074 Unity[18317:1933601] 1: Intel(R) UHD Graphics 630 (low power)
+2021-02-17 18:07:35.074 Unity[18317:1933601] Using device AMD Radeon Pro 5500M (high power)
 Initializing Metal device caps: AMD Radeon Pro 5500M
 Initialize mono
 Mono path[0] = '/Applications/Unity/Hub/Editor/2020.2.4f1/Unity.app/Contents/Managed'
 Mono path[1] = '/Applications/Unity/Hub/Editor/2020.2.4f1/Unity.app/Contents/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = '/Applications/Unity/Hub/Editor/2020.2.4f1/Unity.app/Contents/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56539
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56317
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: /Applications/Unity/Hub/Editor/2020.2.4f1/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll
-Registered in 0.000538 seconds.
+Registered in 0.000592 seconds.
 Native extension for OSXStandalone target not found
-Refreshing native plugins compatible for Editor in 20.90 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 25.67 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  2.382 seconds
+- Completed reload, in  3.251 seconds
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.000416 seconds.
+Registered in 0.000361 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for OSXStandalone target not found
-Refreshing native plugins compatible for Editor in 0.18 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 0.20 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.900 seconds
+- Completed reload, in  1.239 seconds
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
 Launching external process: /Applications/Unity/Hub/Editor/2020.2.4f1/Unity.app/Contents/Tools/UnityShaderCompiler
-Launched and connected shader compiler UnityShaderCompiler after 0.01 seconds
-Refreshing native plugins compatible for Editor in 0.18 ms, found 1 plugins.
+Launched and connected shader compiler UnityShaderCompiler after 0.02 seconds
+Refreshing native plugins compatible for Editor in 0.20 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1105 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 109.1 MB.
-System memory in use after: 109.2 MB.
+Unloading 1113 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 110.5 MB.
+System memory in use after: 110.6 MB.
 
-Unloading 10 unused Assets to reduce memory usage. Loaded Objects now: 1546.
-Total: 1.655465 ms (FindLiveObjects: 0.151984 ms CreateObjectMapping: 0.062812 ms MarkObjects: 1.363839 ms  DeleteObjects: 0.075526 ms)
+Unloading 10 unused Assets to reduce memory usage. Loaded Objects now: 1554.
+Total: 2.181900 ms (FindLiveObjects: 0.274324 ms CreateObjectMapping: 0.074882 ms MarkObjects: 1.740393 ms  DeleteObjects: 0.091113 ms)
 
 ========================================================================
 Received Import Request.
-  path: Assets/PlanetGenerator.cs
-  artifactKey: Guid(cf67585d1741a4f678e59ec6e89ab3b9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/PlanetGenerator.cs using Guid(cf67585d1741a4f678e59ec6e89ab3b9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd4827a69e2365425bda5fbe1bc933e78') in 0.288788 seconds
-  Import took 0.290724 seconds .
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.319753 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.321513 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 15.296573 seconds.
-  path: Assets/Scripts
-  artifactKey: Guid(121d95b126b8c46788e1c597201686f6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts using Guid(121d95b126b8c46788e1c597201686f6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e27fd4090d76ff670b31a36a0173d1b2') in 0.001347 seconds
-  Import took 0.002990 seconds .
+  Time since last request: 0.013090 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002298 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.003909 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.026658 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002298 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.003928 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.017350 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.003383 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.005420 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.043889 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.003728 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.005474 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.043687 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002793 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.004655 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.060986 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.003277 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.005028 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.045507 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002389 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.004042 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.045572 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.003323 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.005175 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.044357 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.003089 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.004708 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.046715 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002638 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.004290 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.051843 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002293 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.003904 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.040229 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002234 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.003897 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.044255 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002256 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.003940 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.047640 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002183 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.003765 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.044717 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002535 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.004199 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.047031 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002232 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.003739 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.061492 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002212 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.003746 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.046130 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002255 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.003848 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.052996 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002239 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.003864 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.039955 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.003285 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.004940 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.044520 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002271 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.003855 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.045909 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002263 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.003828 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.044613 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002191 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.003724 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.047496 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002126 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.003620 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.046542 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002126 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.003604 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.046927 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002492 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.004219 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.046293 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002205 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.003758 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.047219 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002208 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.003772 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.059898 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002650 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.004365 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.046430 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002857 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.004749 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.045775 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002709 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.004657 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.050742 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002443 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.004083 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.041122 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002182 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.003681 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.045988 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002188 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.003703 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.046335 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002338 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.003957 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.045868 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002538 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.004225 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.044218 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002408 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.004025 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.045452 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002243 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.003896 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.046125 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002196 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.003767 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.047104 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002335 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.003897 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.061040 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002325 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.003959 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.046650 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002264 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.003840 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.045258 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002372 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.003932 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.046283 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002308 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.003945 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.049425 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002361 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.003918 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.044270 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002176 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.003714 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.047351 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002204 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.003851 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.046254 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002226 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.003825 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.046682 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002253 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.003845 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.051853 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002165 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.003735 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.039567 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002184 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.003768 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.046510 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002170 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.003727 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.046301 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.003207 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.004804 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.045264 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.003141 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.004711 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.044970 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002971 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.004503 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.045709 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.003100 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.004696 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.045237 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002138 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.003678 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.046301 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002172 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.003777 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.044533 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002309 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.003905 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.047698 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002343 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.003916 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.046019 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002364 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.003975 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.068371 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.003186 seconds
+  ERROR: Build asset version error: assets/scripts/drawhexsphere.cs in SourceAssetDB has modification time of '2021-02-17T17:03:23Z' while content on disk has modification time of '2021-02-17T17:07:39Z'
+  Import took 0.005074 seconds .
 
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.000346 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for OSXStandalone target not found
-Refreshing native plugins compatible for Editor in 0.17 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.813 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.15 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1100 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 113.4 MB.
-System memory in use after: 113.5 MB.
-
-Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 1548.
-Total: 1.484706 ms (FindLiveObjects: 0.125609 ms CreateObjectMapping: 0.034517 ms MarkObjects: 1.283461 ms  DeleteObjects: 0.040391 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.000375 seconds.
+Registered in 0.000415 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for OSXStandalone target not found
 Refreshing native plugins compatible for Editor in 0.18 ms, found 1 plugins.
@@ -121,267 +649,45 @@ Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.816 seconds
+- Completed reload, in  0.883 seconds
 Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.19 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 0.13 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1100 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 113.6 MB.
-System memory in use after: 113.7 MB.
-
-Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 1550.
-Total: 1.494508 ms (FindLiveObjects: 0.132725 ms CreateObjectMapping: 0.029875 ms MarkObjects: 1.291236 ms  DeleteObjects: 0.039554 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.000373 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for OSXStandalone target not found
-Refreshing native plugins compatible for Editor in 0.20 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.857 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.19 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1099 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 113.7 MB.
-System memory in use after: 113.8 MB.
-
-Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 1551.
-Total: 1.857753 ms (FindLiveObjects: 0.200089 ms CreateObjectMapping: 0.057916 ms MarkObjects: 1.500672 ms  DeleteObjects: 0.097535 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.000332 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for OSXStandalone target not found
-Refreshing native plugins compatible for Editor in 0.20 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.840 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.17 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1100 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 113.9 MB.
-System memory in use after: 114.0 MB.
-
-Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 1554.
-Total: 1.335075 ms (FindLiveObjects: 0.178108 ms CreateObjectMapping: 0.026339 ms MarkObjects: 1.059523 ms  DeleteObjects: 0.070365 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.000386 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for OSXStandalone target not found
-Refreshing native plugins compatible for Editor in 0.18 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.829 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.16 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1100 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 114.1 MB.
-System memory in use after: 114.2 MB.
+Unloading 1108 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 114.8 MB.
+System memory in use after: 114.9 MB.
 
 Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 1556.
-Total: 1.460170 ms (FindLiveObjects: 0.140017 ms CreateObjectMapping: 0.033557 ms MarkObjects: 1.241868 ms  DeleteObjects: 0.043300 ms)
+Total: 1.361015 ms (FindLiveObjects: 0.181180 ms CreateObjectMapping: 0.030490 ms MarkObjects: 1.107802 ms  DeleteObjects: 0.040834 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.864048 seconds.
+  path: Assets/Scripts/DrawHexSphere.cs
+  artifactKey: Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/DrawHexSphere.cs using Guid(bdcd077f7ed574179bbff0ab2b6cea75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f3a7bf9ab7f53537d9f4c2aaf5dffb25') in 0.005441 seconds
+  Import took 0.007075 seconds .
 
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.000410 seconds.
+Registered in 0.000378 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for OSXStandalone target not found
-Refreshing native plugins compatible for Editor in 0.17 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 0.21 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.861 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.18 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1100 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 114.3 MB.
-System memory in use after: 114.4 MB.
-
-Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 1558.
-Total: 1.423070 ms (FindLiveObjects: 0.141146 ms CreateObjectMapping: 0.034642 ms MarkObjects: 1.203176 ms  DeleteObjects: 0.043002 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.000286 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for OSXStandalone target not found
-Refreshing native plugins compatible for Editor in 0.17 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.783 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.14 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1101 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 114.5 MB.
-System memory in use after: 114.6 MB.
-
-Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 1561.
-Total: 1.915486 ms (FindLiveObjects: 0.200258 ms CreateObjectMapping: 0.048733 ms MarkObjects: 1.608708 ms  DeleteObjects: 0.055586 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.000368 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for OSXStandalone target not found
-Refreshing native plugins compatible for Editor in 0.18 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.805 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.24 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1102 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 114.7 MB.
-System memory in use after: 114.8 MB.
-
-Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 1564.
-Total: 1.530921 ms (FindLiveObjects: 0.120069 ms CreateObjectMapping: 0.031977 ms MarkObjects: 1.335360 ms  DeleteObjects: 0.042860 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.000297 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for OSXStandalone target not found
-Refreshing native plugins compatible for Editor in 0.22 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.818 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.25 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1103 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 114.9 MB.
-System memory in use after: 115.0 MB.
-
-Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 1567.
-Total: 1.425848 ms (FindLiveObjects: 0.251495 ms CreateObjectMapping: 0.029088 ms MarkObjects: 1.104203 ms  DeleteObjects: 0.039853 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.000347 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for OSXStandalone target not found
-Refreshing native plugins compatible for Editor in 0.18 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.838 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.18 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1103 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 115.1 MB.
-System memory in use after: 115.2 MB.
-
-Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 1569.
-Total: 1.370650 ms (FindLiveObjects: 0.121490 ms CreateObjectMapping: 0.032538 ms MarkObjects: 1.181426 ms  DeleteObjects: 0.034458 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.000333 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for OSXStandalone target not found
-Refreshing native plugins compatible for Editor in 0.17 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.838 seconds
+- Completed reload, in  0.948 seconds
 Platform modules already initialized, skipping
 Refreshing native plugins compatible for Editor in 0.19 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1103 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 115.2 MB.
-System memory in use after: 115.3 MB.
+Unloading 1108 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 115.0 MB.
+System memory in use after: 115.1 MB.
 
-Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 1571.
-Total: 1.492750 ms (FindLiveObjects: 0.128728 ms CreateObjectMapping: 0.031769 ms MarkObjects: 1.288285 ms  DeleteObjects: 0.043056 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.000333 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for OSXStandalone target not found
-Refreshing native plugins compatible for Editor in 0.17 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.777 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.16 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1107 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 115.5 MB.
-System memory in use after: 115.6 MB.
-
-Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 1577.
-Total: 1.858706 ms (FindLiveObjects: 0.178685 ms CreateObjectMapping: 0.045686 ms MarkObjects: 1.585844 ms  DeleteObjects: 0.046970 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.000328 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for OSXStandalone target not found
-Refreshing native plugins compatible for Editor in 0.18 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.798 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.12 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1107 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 115.7 MB.
-System memory in use after: 115.8 MB.
-
-Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 1579.
-Total: 1.422198 ms (FindLiveObjects: 0.129349 ms CreateObjectMapping: 0.028875 ms MarkObjects: 1.227175 ms  DeleteObjects: 0.035894 ms)
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 1558.
+Total: 1.456430 ms (FindLiveObjects: 0.126989 ms CreateObjectMapping: 0.031763 ms MarkObjects: 1.259895 ms  DeleteObjects: 0.037032 ms)
 
