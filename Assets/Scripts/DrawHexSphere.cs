@@ -10,7 +10,7 @@ public class DrawHexSphere : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        var hexasphere = new HexasphereGenerator(1000.0f, 5, 1.0f).Generate();
+        var hexasphere = new HexasphereGenerator(1.0f, 16, 0.8f).Generate();
 
         var verts = new List<Vector3>();
         var tris = new List<int>();
