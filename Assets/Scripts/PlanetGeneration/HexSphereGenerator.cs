@@ -95,8 +95,8 @@ namespace PlanetGeneration
 
             foreach (var face in initialPolyhedron.Faces)
             {
-                var newFace = SubdivideFace(face, divisions, addPoint);
-                newFaces.AddRange(newFace);
+                var dividedFaces = SubdivideFace(face, divisions, addPoint);
+                newFaces.AddRange(dividedFaces);
             }
 
             var newPoints = newFaces.SelectMany(f => f.Points).Distinct().ToList();
@@ -156,7 +156,7 @@ namespace PlanetGeneration
 
             var newFaces = new List<Face>();
 
-            for (var i = 1; i < divisions; i++)
+            for (var i = 1; i <= divisions; i++)
             {
                 var previousRow = currentRow;
                 currentRow = SubdivideEdgeBetweenPoints(leftEdge[i], rightEdge[i], i, addPoint);
