@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace PlanetGeneration
 {
-    public class HexasphereGenerator
+    public class HexSphereGenerator
     {
         private readonly float _radius;
         private readonly int _numDivisions;
@@ -18,7 +18,7 @@ namespace PlanetGeneration
 
         private const int TilesPerRegion = 256;
 
-        public HexasphereGenerator(float radius, int numDivisions, float hexSize = 1.0f)
+        public HexSphereGenerator(float radius, int numDivisions, float hexSize = 1.0f)
         {
             _radius = radius;
             _numDivisions = numDivisions;
