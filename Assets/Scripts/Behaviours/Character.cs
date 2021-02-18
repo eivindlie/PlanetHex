@@ -33,7 +33,9 @@ namespace Behaviours
         private void RotateToUprightPosition(Transform trans)
         {
             var up = (trans.position - _gravitySource).normalized;
-            trans.up = up;
+            var forward = trans.forward;
+            forward = (forward - Vector3.Dot(forward, up) * up).normalized;
+            trans.rotation = Quaternion.LookRotation(forward, up);
         }
 
         private void HandleMovement(Transform trans)
