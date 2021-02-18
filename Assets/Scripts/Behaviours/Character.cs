@@ -20,6 +20,10 @@ namespace Behaviours
         {
             _gravitySource = gravitySource == null ? new Vector3(0, 0, 0) : gravitySource.transform.position;
             _rigidbody = GetComponent<Rigidbody>();
+
+            var trans = transform;
+            RotateToUprightPosition(trans);
+            camera.transform.rotation = Quaternion.LookRotation(trans.forward, trans.up);
         }
 
         private void Update()
@@ -27,7 +31,6 @@ namespace Behaviours
             var trans = transform;
             RotateToUprightPosition(trans);
             HandleMovement(trans);
-            //HandleMouseMove(trans);
         }
 
         private void RotateToUprightPosition(Transform trans)
