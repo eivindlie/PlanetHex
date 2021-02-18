@@ -2907,3 +2907,34 @@ System memory in use after: 148.8 MB.
 Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 1834.
 Total: 1.633866 ms (FindLiveObjects: 0.184211 ms CreateObjectMapping: 0.042280 ms MarkObjects: 1.355892 ms  DeleteObjects: 0.050133 ms)
 
+========================================================================
+Received Import Request.
+  Time since last request: 3706.856605 seconds.
+  path: Assets/Materials/New Lighting Settings.lighting
+  artifactKey: Guid(e2e6989479be243059ee8be02341b605) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Materials/New Lighting Settings.lighting using Guid(e2e6989479be243059ee8be02341b605) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5987a124330a80edab64d0c5a11fc5b0') in 0.319844 seconds
+  Import took 0.321744 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.000388 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for OSXStandalone target not found
+Refreshing native plugins compatible for Editor in 0.18 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.825 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.16 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1114 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 153.1 MB.
+System memory in use after: 153.2 MB.
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 1836.
+Total: 1.706858 ms (FindLiveObjects: 0.193721 ms CreateObjectMapping: 0.043399 ms MarkObjects: 1.414903 ms  DeleteObjects: 0.053292 ms)
+
