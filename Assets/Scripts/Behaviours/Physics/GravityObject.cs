@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Behaviours
+namespace Behaviours.Physics
 {
     public class GravityObject : MonoBehaviour
     {
