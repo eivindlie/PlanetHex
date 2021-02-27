@@ -31,7 +31,7 @@ namespace PlanetGeneration
                 (int) Math.Ceiling(Math.Sqrt(Math.Pow(_numDivisions, 2) / TilesPerRegion));
         }
 
-        public Hexasphere Generate()
+        public HexSphere Generate()
         {
             var polyhedron = CreateInitialPolyhedron();
             polyhedron = SubdividePolyhedron(polyhedron, _regionDivisions, false, false);
@@ -211,7 +211,7 @@ namespace PlanetGeneration
             return points;
         }
 
-        private Hexasphere MapPolyhedronToHexasphere(Polyhedron polyhedron, float radius, float hexSize)
+        private HexSphere MapPolyhedronToHexasphere(Polyhedron polyhedron, float radius, float hexSize)
         {
             polyhedron.Corners = polyhedron.Corners.Select(p => PointHelpers.ProjectToRadius(p, radius)).ToList();
 
@@ -244,7 +244,7 @@ namespace PlanetGeneration
                 regions[regionId].Tiles.Add(tile);
             }
 
-            return new Hexasphere
+            return new HexSphere
             {
                 Regions = regions
             };
