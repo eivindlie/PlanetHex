@@ -12,7 +12,13 @@ namespace Behaviours.Planet
     {
         public void Start()
         {
-            var planet = new PlanetGenerator(new PlanetGeneratorSettings()).Generate();
+            var settings = new PlanetGeneratorSettings
+            {
+                HeightLimit = 5,
+                BlockHeight = 3,
+            };
+            
+            var planet = new PlanetGenerator(settings).Generate();
             
             foreach(var (region, regionIndex) in planet.Regions.WithIndex())
             foreach (var (chunk, chunkIndex) in region.Chunks.WithIndex())
