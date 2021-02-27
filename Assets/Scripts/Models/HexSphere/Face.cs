@@ -1,4 +1,4 @@
-namespace PlanetGeneration.Models
+namespace Models.HexSphere
 {
     public class Face
     {

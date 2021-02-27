@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-namespace PlanetGeneration.Models
+namespace Models.HexSphere
 {
     public class Point
     {

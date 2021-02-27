@@ -1,4 +1,4 @@
-using PlanetGeneration.Models;
+using Models.HexSphere;
 
 using UnityEngine;
 

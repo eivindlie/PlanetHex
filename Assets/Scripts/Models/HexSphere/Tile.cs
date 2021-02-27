@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace PlanetGeneration.Models
+namespace Models.HexSphere
 {
     public class Tile
     {
