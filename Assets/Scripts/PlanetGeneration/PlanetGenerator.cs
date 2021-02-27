@@ -39,9 +39,9 @@ namespace PlanetGeneration
             };
         }
 
-        private Region GenerateRegion(TileRegion tileRegion)
+        private Region GenerateRegion(TileRegion tileRegion, int regionNumber)
         {
-            var region = GenerateEmptyRegion(tileRegion);
+            var region = GenerateEmptyRegion(tileRegion, regionNumber);
             foreach (var (tile, tileIndex) in tileRegion.Tiles.WithIndex())
             {
                 var tileStack = GenerateTileStack(tile);
@@ -58,30 +58,35 @@ namespace PlanetGeneration
             return region;
         }
 
-        private Region GenerateEmptyRegion(TileRegion tileRegion)
+        private Region GenerateEmptyRegion(TileRegion tileRegion, int regionNumber)
         {
             var numChunks = (int) Mathf.Ceil((float) _settings.HeightLimit / _settings.ChunkHeight);
             return new Region
             {
-                Chunks = Enumerable.Range(0, numChunks).Select(_ => GenerateEmptyChunk(tileRegion)).ToArray()
+                Chunks = Enumerable.Range(0, numChunks)
+                    .Select(chunkNumber => GenerateEmptyChunk(tileRegion, chunkNumber))
+                    .ToArray(),
+                RegionNumber = regionNumber
             };
         }
 
-        private Chunk GenerateEmptyChunk(TileRegion tileRegion)
+        private Chunk GenerateEmptyChunk(TileRegion tileRegion, int chunkNumber)
         {
             return new Chunk
             {
                 Layers = Enumerable.Range(0, _settings.ChunkHeight)
-                    .Select(_ => GenerateEmptyLayer(tileRegion))
-                    .ToArray()
+                    .Select(layerNumber => GenerateEmptyLayer(tileRegion, layerNumber))
+                    .ToArray(),
+                ChunkNumber = chunkNumber
             };
         }
 
-        private Layer GenerateEmptyLayer(TileRegion tileRegion)
+        private Layer GenerateEmptyLayer(TileRegion tileRegion, int layerNumber)
         {
             return new Layer
             {
-                Blocks = new int[tileRegion.Tiles.Count]
+                Blocks = new int[tileRegion.Tiles.Count],
+                LayerNumber = layerNumber
             };
         }
 
