@@ -2,9 +2,8 @@ using System.Collections.Generic;
 
 namespace PlanetGeneration.Models
 {
-    public class Hexasphere
+    public class TileRegion
     {
-        public List<TileRegion> Regions { get; set; }
+        public List<Tile> Tiles { get; set; }
     }
-
 }

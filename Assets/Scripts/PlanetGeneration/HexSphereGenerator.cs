@@ -227,7 +227,13 @@ namespace PlanetGeneration
 
             return new Hexasphere
             {
-                Tiles = tiles
+                Regions = new List<TileRegion>
+                {
+                    new TileRegion
+                    {
+                        Tiles = tiles
+                    }
+                }
             };
         }
 

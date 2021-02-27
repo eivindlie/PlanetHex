@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 using Meshes;
 
@@ -19,7 +20,7 @@ namespace Behaviours.Planet
         {
             var hexSphere = new HexSphereGenerator(sphereRadius, 16).Generate();
 
-            foreach (var tile in hexSphere.Tiles)
+            foreach (var tile in hexSphere.Regions.SelectMany(r => r.Tiles))
             {
                 for (var i = 0; i < Random.Range(1, 5); i++)
                 {
