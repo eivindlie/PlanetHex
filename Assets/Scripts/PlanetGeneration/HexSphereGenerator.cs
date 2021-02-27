@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
+using Extensions;
+
 using PlanetGeneration.Models;
 
 using UnityEngine;
@@ -31,7 +33,7 @@ namespace PlanetGeneration
         public Hexasphere Generate()
         {
             var polyhedron = CreateInitialPolyhedron();
-            polyhedron = SubdividePolyhedron(polyhedron, _regionDivisions, false);
+            polyhedron = SubdividePolyhedron(polyhedron, _regionDivisions, false, false);
             polyhedron = SubdividePolyhedron(polyhedron, _numDivisions / _regionDivisions);
             var hexasphere = MapPolyhedronToHexasphere(polyhedron, _radius, _hexSize);
 
@@ -88,15 +90,18 @@ namespace PlanetGeneration
             };
         }
 
-        private Polyhedron SubdividePolyhedron(Polyhedron initialPolyhedron, int divisions, bool registerFaces = true)
+        private Polyhedron SubdividePolyhedron(Polyhedron initialPolyhedron, int divisions, bool registerFaces = true,
+            bool registerRegions = true)
         {
             var addPoint = CreatePointAdder(initialPolyhedron.Corners);
 
             var newFaces = new List<Face>();
 
-            foreach (var face in initialPolyhedron.Faces)
+            foreach (var (face, index) in initialPolyhedron.Faces.WithIndex())
             {
-                var dividedFaces = SubdivideFace(face, divisions, addPoint, registerFaces);
+                var dividedFaces = registerRegions
+                    ? SubdivideFace(face, divisions, addPoint, registerFaces)
+                    : SubdivideFace(face, divisions, addPoint, registerFaces, index);
                 newFaces.AddRange(dividedFaces);
             }
 
@@ -146,13 +151,15 @@ namespace PlanetGeneration
         /// <param name="divisions">The number of divisions along each edge of the face.</param>
         /// <param name="addPoint">A function that takes the coordinates of a point, and either returns an existing
         /// point matchin the coordinates, or returns a new point if none exist.</param>
+        /// <param name="registerFaces"></param>
+        /// <param name="regionId"></param>
         /// <returns></returns>
         private List<Face> SubdivideFace(Face face, int divisions, Func<Point, Point> addPoint,
-            bool registerFaces = true)
+            bool registerFaces = true, int? regionId = null)
         {
             var bottomEdge = new List<Point> { face.Points[0] };
-            var leftEdge = SubdivideEdgeBetweenPoints(face.Points[0], face.Points[1], divisions, addPoint);
-            var rightEdge = SubdivideEdgeBetweenPoints(face.Points[0], face.Points[2], divisions, addPoint);
+            var leftEdge = SubdivideEdgeBetweenPoints(face.Points[0], face.Points[1], divisions, addPoint, regionId);
+            var rightEdge = SubdivideEdgeBetweenPoints(face.Points[0], face.Points[2], divisions, addPoint, regionId);
 
             var currentRow = bottomEdge;
 
@@ -161,7 +168,7 @@ namespace PlanetGeneration
             for (var i = 1; i <= divisions; i++)
             {
                 var previousRow = currentRow;
-                currentRow = SubdivideEdgeBetweenPoints(leftEdge[i], rightEdge[i], i, addPoint);
+                currentRow = SubdivideEdgeBetweenPoints(leftEdge[i], rightEdge[i], i, addPoint, regionId);
 
                 for (var j = 0; j < i; j++)
                 {
@@ -184,14 +191,18 @@ namespace PlanetGeneration
         /// </summary>
         /// <returns></returns>
         private List<Point> SubdivideEdgeBetweenPoints(Point p1, Point p2, int divisions,
-            Func<Point, Point> addPoint)
+            Func<Point, Point> addPoint, int? regionId = null)
         {
+            p1.Region ??= regionId;
+            p2.Region ??= regionId;
+            
             var points = new List<Point> { p1 };
 
             for (var i = 1; i < divisions; i++)
             {
                 var ratio = (float) i / divisions;
                 var newPoint = addPoint(Segment(p1, p2, ratio));
+                newPoint.Region ??= regionId;
                 points.Add(newPoint);
             }
             points.Add(p2);
