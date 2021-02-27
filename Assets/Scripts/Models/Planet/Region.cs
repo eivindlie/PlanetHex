@@ -7,6 +7,6 @@ namespace Models.Planet
     public class Region
     {
         public Point Center { get; set; }
-        public List<Chunk> Chunks { get; set; }
+        public Chunk[] Chunks { get; set; }
     }
 }

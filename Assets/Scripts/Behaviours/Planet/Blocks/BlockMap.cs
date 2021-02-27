@@ -8,7 +8,8 @@ namespace Behaviours.Planet.Blocks
     {
         private static Dictionary<int, Block> Map = new Dictionary<int, Block>
         {
-            [0] = new BlackBlock(),
+            [0] = new AirBlock(),
+            [1] = new BlackBlock(),
         };
 
         public static Block GetBlock(int blockId)

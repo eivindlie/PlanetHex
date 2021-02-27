@@ -4,6 +4,6 @@ namespace Models.Planet
 {
     public class Layer
     {
-        public List<int> Blocks { get; set; }
+        public int[] Blocks { get; set; }
     }
 }
