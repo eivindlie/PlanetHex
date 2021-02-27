@@ -212,10 +212,7 @@ namespace PlanetGeneration
 
         private Hexasphere MapPolyhedronToHexasphere(Polyhedron polyhedron, float radius, float hexSize)
         {
-            foreach (var p in polyhedron.Corners)
-            {
-                PointHelpers.ProjectToRadius(p, radius, mutate: true);
-            }
+            polyhedron.Corners = polyhedron.Corners.Select(p => PointHelpers.ProjectToRadius(p, radius)).ToList();
 
             var numRegions = polyhedron.Corners.Select(p => p.Region ?? 0).Max() + 1;
             var regions = Enumerable.Range(0, numRegions)

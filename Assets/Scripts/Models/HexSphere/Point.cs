@@ -14,7 +14,7 @@ namespace Models.HexSphere
         
         public int? Region { get; internal set; }
 
-        public List<Face> Faces { get; } = new List<Face>();
+        public List<Face> Faces { get; set; } = new List<Face>();
 
         public Point(float x, float y, float z)
         {

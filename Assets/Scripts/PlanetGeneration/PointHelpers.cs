@@ -8,7 +8,7 @@ namespace PlanetGeneration
 {
     public static class PointHelpers
     {
-        public static Point ProjectToRadius(Point point, float radius, float scale=1.0f, bool mutate=false)
+        public static Point ProjectToRadius(Point point, float radius, float scale=1.0f)
         {
             scale = Mathf.Max(0, Mathf.Min(1, scale));
             
@@ -19,18 +19,14 @@ namespace PlanetGeneration
             var y = point.Y * ratio * scale;
             var z = point.Z * ratio * scale;
 
-            if (!mutate) return new Point
+            return new Point
             {
                 X = x,
                 Y = y,
                 Z = z,
-                Region = point.Region
+                Region = point.Region,
+                Faces = point.Faces
             };
-            
-            point.X = x;
-            point.Y = y;
-            point.Z = z;
-            return point;
         }
         
         public static List<Face> GetOrderedFaces(Point point)
