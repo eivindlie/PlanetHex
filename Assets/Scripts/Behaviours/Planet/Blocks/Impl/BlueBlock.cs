@@ -8,7 +8,7 @@ namespace Behaviours.Planet.Blocks.Impl
 
         public BlueBlock()
         {
-            Material = Resources.Load<Material>("Materials/Black");
+            Material = Resources.Load<Material>("Materials/Blue");
         }
     }
 }
