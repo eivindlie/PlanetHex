@@ -17,6 +17,9 @@ namespace Behaviours.Planet
         {
             var settings = new PlanetGeneratorSettings
             {
+                BaseRadius = 200,
+                Divisions = 60,
+                
                 HeightLimit = 5,
                 BlockHeight = 3,
             };

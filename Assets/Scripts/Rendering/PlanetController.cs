@@ -16,7 +16,7 @@ namespace Rendering
     public class PlanetController
     {
         private const int RenderDistance = 100;
-        private const int UnrenderDistance = 130;
+        private const int UnrenderDistance = 150;
 
         private readonly Planet _planet;
         private readonly GameObject _player;
@@ -38,21 +38,27 @@ namespace Rendering
 
         public void UpdateRenderedRegions()
         {
-            var regionsToRender = _planet.Regions.Where(ShouldRenderRegion).ToList();
+            var regionsToRender = _planet.Regions.Select(r => (r, CalculateRenderPriority(r)))
+                .Where(r => r.Item2 > 0)
+                .OrderByDescending(r => r.Item2)
+                .Select(r => r.Item1)
+                .ToList();
             var regionsToUnrender = _planet.Regions.Where(ShouldUnrenderRegion).ToList();
 
             RenderRegions(regionsToRender);
             UnrenderRegions(regionsToUnrender);
         }
 
-        private bool ShouldRenderRegion(Region region)
+        private float CalculateRenderPriority(Region region)
         {
-            if (_renderedRegions.ContainsKey(region.RegionNumber)) return false;
+            if (_renderedRegions.ContainsKey(region.RegionNumber)) return 0;
 
             var distance = SphereHelpers.DistanceBetweenPoints(region.Center.AsVector(), _player.transform.position,
                 _planet.BaseRadius);
 
-            return distance < RenderDistance;
+            if (distance > RenderDistance) return 0;
+
+            return 1 / distance;
         }
 
         private bool ShouldUnrenderRegion(Region region)
@@ -88,6 +94,8 @@ namespace Rendering
                 {
                     Object.Destroy(go);
                 }
+
+                _renderedRegions.Remove(region.RegionNumber);
             }
         }
     }
