@@ -4,7 +4,7 @@ using PlanetGeneration;
 
 using UnityEngine;
 
-namespace Meshes
+namespace Rendering
 {
     public static class BlockGameObjectFactory
     {

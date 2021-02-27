@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 
 using Models.HexSphere;
 
@@ -7,7 +6,7 @@ using PlanetGeneration;
 
 using UnityEngine;
 
-namespace Meshes
+namespace Rendering
 {
     public static class TileToMeshMapper
     {
