@@ -20,7 +20,7 @@ namespace Behaviours.Planet
                 BaseRadius = 200,
                 Divisions = 60,
                 
-                HeightLimit = 5,
+                HeightLimit = 20,
                 BlockHeight = 3,
             };
             

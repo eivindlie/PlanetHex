@@ -8,6 +8,8 @@ using Extensions;
 using Models.HexSphere;
 using Models.Planet;
 
+using PlanetGeneration.Noise;
+
 using UnityEngine;
 
 namespace PlanetGeneration
@@ -15,6 +17,7 @@ namespace PlanetGeneration
     public class PlanetGenerator
     {
         private readonly PlanetGeneratorSettings _settings;
+        private readonly SimplexNoiseGenerator _noiseGenerator = new SimplexNoiseGenerator();
 
         public PlanetGenerator(PlanetGeneratorSettings settings)
         {
@@ -93,7 +96,8 @@ namespace PlanetGeneration
 
         private List<int> GenerateTileStack(Tile tile)
         {
-            var height = Random.Range(1, _settings.HeightLimit);
+            var height = _noiseGenerator.GetDensity(tile.Center.AsVector(), 1, _settings.HeightLimit, octaves: 3,
+                multiplier: _settings.BaseRadius / 4, persistence: 0.6f);
             var numChunks = (int) Mathf.Ceil((float) _settings.HeightLimit / _settings.ChunkHeight);
             return Enumerable.Range(0, numChunks * _settings.ChunkHeight)
                 .Select((x, i) => i < height ? GreenBlock.BlockId : AirBlock.BlockId)
