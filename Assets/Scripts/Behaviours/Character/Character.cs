@@ -5,7 +5,7 @@ namespace Behaviours.Character
     public class Character : MonoBehaviour
     {
         public GameObject gravitySource;
-        public Camera camera;
+        public new Camera camera;
 
         private Vector3 _gravitySource;
         private Rigidbody _rigidbody;

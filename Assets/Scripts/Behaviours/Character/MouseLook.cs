@@ -6,16 +6,16 @@ namespace Behaviours.Character
     {
         public float mouseSensitivity = 100.0f;
         public float clampAngle = 80.0f;
-        public Camera camera;
+        public new Camera camera;
 
-        private float rotY = 0.0f; // rotation around the up/y axis
-        private float rotX = 0.0f; // rotation around the right/x axis
+        private float _rotY = 0.0f; // rotation around the up/y axis
+        private float _rotX = 0.0f; // rotation around the right/x axis
 
         void Start()
         {
             Vector3 rot = transform.localRotation.eulerAngles;
-            rotY = rot.y;
-            rotX = rot.x;
+            _rotY = rot.y;
+            _rotX = rot.x;
         }
 
         void Update()
@@ -26,13 +26,13 @@ namespace Behaviours.Character
             float mouseX = Input.GetAxis("Mouse X");
             float mouseY = -Input.GetAxis("Mouse Y");
 
-            rotY = mouseX * mouseSensitivity * Time.deltaTime;
-            rotX += mouseY * mouseSensitivity * Time.deltaTime;
+            _rotY = mouseX * mouseSensitivity * Time.deltaTime;
+            _rotX += mouseY * mouseSensitivity * Time.deltaTime;
 
-            rotX = Mathf.Clamp(rotX, -clampAngle, clampAngle);
+            _rotX = Mathf.Clamp(_rotX, -clampAngle, clampAngle);
 
-            Quaternion cameraRotation = Quaternion.Euler(rotX, 0, 0.0f);
-            var newForward = Quaternion.AngleAxis(rotY, transform.up) * transform.forward;
+            Quaternion cameraRotation = Quaternion.Euler(_rotX, 0, 0.0f);
+            var newForward = Quaternion.AngleAxis(_rotY, transform.up) * transform.forward;
             Quaternion lookRotation = Quaternion.LookRotation(newForward, transform.up);
             camera.transform.localRotation = cameraRotation;
             transform.rotation = lookRotation;
