@@ -8,11 +8,11 @@ namespace Models.HexSphere
 {
     public class Point
     {
-        public float X { get; private set; }
-        public float Y { get; private set; }
-        public float Z { get; private set; }
+        public float X { get; internal set; }
+        public float Y { get; internal set; }
+        public float Z { get; internal set; }
         
-        public int? Region { get; set; }
+        public int? Region { get; internal set; }
 
         public List<Face> Faces { get; } = new List<Face>();
 
@@ -22,6 +22,8 @@ namespace Models.HexSphere
             Y = y;
             Z = z;
         }
+
+        public Point() {}
 
         public void RegisterFace(Face face)
         {
@@ -40,56 +42,6 @@ namespace Models.HexSphere
         public override int GetHashCode()
         {
             return (X.ToString("0.0") + Y.ToString("0.0") + Z.ToString("0.0")).GetHashCode();
-        }
-
-        public Point ProjectToRadius(float radius, float scale=1.0f, bool mutate=false)
-        {
-            scale = Mathf.Max(0, Mathf.Min(1, scale));
-            
-            var magnitude = Mathf.Sqrt(Mathf.Pow(X, 2) + Mathf.Pow(Y, 2) + Mathf.Pow(Z, 2));
-            var ratio = radius / magnitude;
-            
-            var x = X * ratio * scale;
-            var y = Y * ratio * scale;
-            var z = Z * ratio * scale;
-
-            if (mutate)
-            {
-                X = x;
-                Y = y;
-                Z = z;
-                return this;
-            }
-            return new Point(x, y, z);
-        }
-        
-        public List<Face> GetOrderedFaces()
-        {
-            var workingList = new List<Face>(Faces);
-            var ret = new List<Face>();
-
-            var i = 0;
-            while (i < Faces.Count)
-            {
-                if (i == 0)
-                {
-                    ret.Add(workingList[i]);
-                    workingList.RemoveAt(i);
-                }
-                else
-                {
-                    for(var j = 0; j < workingList.Count; j++)
-                    {
-                        if (i > ret.Count || !FaceHelpers.AreAdjacent(workingList[j], ret[i - 1])) continue;
-                        
-                        ret.Add(workingList[j]);
-                        workingList.RemoveAt(j);
-                        break;
-                    }
-                }
-                i++;
-            }
-            return ret;
         }
 
         public override string ToString()

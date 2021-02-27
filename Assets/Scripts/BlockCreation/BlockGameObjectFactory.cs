@@ -1,5 +1,7 @@
 using Models.HexSphere;
 
+using PlanetGeneration;
+
 using UnityEngine;
 
 namespace Meshes
@@ -20,7 +22,7 @@ namespace Meshes
             
             block.GetComponent<MeshRenderer>().material = material;
 
-            block.transform.position = tile.Center.ProjectToRadius(bottomRadius).AsVector();
+            block.transform.position = PointHelpers.ProjectToRadius(tile.Center, bottomRadius).AsVector();
             return block;
         }
     }

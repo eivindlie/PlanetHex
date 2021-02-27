@@ -214,7 +214,7 @@ namespace PlanetGeneration
         {
             foreach (var p in polyhedron.Corners)
             {
-                p.ProjectToRadius(radius, mutate: true);
+                PointHelpers.ProjectToRadius(p, radius, mutate: true);
             }
 
             var numRegions = polyhedron.Corners.Select(p => p.Region ?? 0).Max() + 1;
@@ -228,7 +228,7 @@ namespace PlanetGeneration
             foreach (var p in polyhedron.Corners)
             {
                 var center = p;
-                var faces = center.GetOrderedFaces();
+                var faces = PointHelpers.GetOrderedFaces(center);
                 var boundaryPoints = faces.Select(f => Segment(center, f.Centroid, hexSize)).ToList();
 
                 var tile = new Tile
