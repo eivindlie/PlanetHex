@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
 
+using Extensions;
+
 using Meshes;
 
 using PlanetGeneration;
@@ -20,12 +22,13 @@ namespace Behaviours.Planet
         {
             var hexSphere = new HexSphereGenerator(sphereRadius, 16).Generate();
 
-            foreach (var tile in hexSphere.Regions.SelectMany(r => r.Tiles))
+            foreach (var (region, regionIndex) in hexSphere.Regions.WithIndex())
+            foreach (var tile in region.Tiles)
             {
+                var materialIndex = regionIndex % blockMaterials.Count;
+                var material = blockMaterials[materialIndex];
                 for (var i = 0; i < Random.Range(1, 5); i++)
                 {
-                    var materialIndex = Random.Range(0, blockMaterials.Count); 
-                    var material = blockMaterials[materialIndex];
                     var block = BlockGameObjectFactory.Create(tile, sphereRadius + i * blockHeight, material,
                         blockHeight);
                     block.transform.parent = transform;
