@@ -553,3 +553,11 @@ System memory in use after: 118.0 MB.
 Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 1617.
 Total: 1.924518 ms (FindLiveObjects: 0.175803 ms CreateObjectMapping: 0.044653 ms MarkObjects: 1.652059 ms  DeleteObjects: 0.050138 ms)
 
+========================================================================
+Received Import Request.
+  Time since last request: 892.868671 seconds.
+  path: Assets/Resources
+  artifactKey: Guid(e4132c01365ec464e8438fc223734ee3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources using Guid(e4132c01365ec464e8438fc223734ee3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ff7e38fa478d3081575f9310c07b154c') in 0.003294 seconds
+  Import took 0.004965 seconds .
+
