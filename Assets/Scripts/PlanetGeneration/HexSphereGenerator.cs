@@ -193,8 +193,8 @@ namespace PlanetGeneration
         private List<Point> SubdivideEdgeBetweenPoints(Point p1, Point p2, int divisions,
             Func<Point, Point> addPoint, int? regionId = null)
         {
-            p1.Region ??= regionId;
-            p2.Region ??= regionId;
+            p1.Region = regionId;
+            p2.Region = regionId;
             
             var points = new List<Point> { p1 };
 
@@ -202,7 +202,7 @@ namespace PlanetGeneration
             {
                 var ratio = (float) i / divisions;
                 var newPoint = addPoint(Segment(p1, p2, ratio));
-                newPoint.Region ??= regionId;
+                newPoint.Region = regionId;
                 points.Add(newPoint);
             }
             points.Add(p2);
