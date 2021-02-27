@@ -19,6 +19,8 @@ namespace Rendering
             var tileRegion = planet.HexSphere.Regions[regionIndex];
             var chunk = planet.Regions[regionIndex].Chunks[chunkIndex];
 
+            var gameObjects = new List<GameObject>();
+            
             foreach (var (layer, layerIndex) in chunk.Layers.WithIndex())
             {
                 foreach (var (blockId, index) in layer.Blocks.WithIndex())
@@ -47,8 +49,12 @@ namespace Rendering
                     }
 
                     go.transform.position = PointHelpers.ProjectToRadius(tile.Center, bottomRadius).AsVector();
+                    
+                    gameObjects.Add(go);
                 }
             }
+            
+            return gameObjects;
         }
     }
 }
