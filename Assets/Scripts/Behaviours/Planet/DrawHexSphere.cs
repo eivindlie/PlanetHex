@@ -18,7 +18,7 @@ namespace Behaviours.Planet
             var tris = new List<int>();
 
             var i = 0;
-            foreach (var tile in hexasphere.Tiles)
+            foreach (var tile in hexasphere.Regions.SelectMany(region => region.Tiles))
             {
                 verts.AddRange(tile.Boundary.Select(p => p.AsVector()));
 

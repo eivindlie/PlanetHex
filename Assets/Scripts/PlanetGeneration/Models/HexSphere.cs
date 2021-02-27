@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 
+using Terrain;
+
 namespace PlanetGeneration.Models
 {
     public class Hexasphere
     {
-        public List<Tile> Tiles { get; set; }
+        public List<Region> Regions { get; set; }
     }
 }

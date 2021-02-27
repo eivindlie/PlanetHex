@@ -4,7 +4,11 @@ using System.Linq;
 
 using PlanetGeneration.Models;
 
+using Terrain;
+
 using UnityEngine;
+
+using Debug = System.Diagnostics.Debug;
 
 namespace PlanetGeneration
 {
@@ -31,7 +35,8 @@ namespace PlanetGeneration
         public Hexasphere Generate()
         {
             var polyhedron = CreateInitialPolyhedron();
-            polyhedron = SubdividePolyhedron(polyhedron, _numDivisions);
+            polyhedron = SubdividePolyhedron(polyhedron, _regionDivisions, false);
+            polyhedron = SubdividePolyhedron(polyhedron, _numDivisions, true);
             var hexasphere = MapPolyhedronToHexasphere(polyhedron, _radius, _hexSize);
 
             return hexasphere;
@@ -87,16 +92,22 @@ namespace PlanetGeneration
             };
         }
 
-        private Polyhedron SubdividePolyhedron(Polyhedron initialPolyhedron, int divisions)
+        private Polyhedron SubdividePolyhedron(Polyhedron initialPolyhedron, int divisions,
+            bool registerRegions)
         {
             var addPoint = CreatePointAdder(initialPolyhedron.Corners);
 
             var newFaces = new List<Face>();
 
+            int regionId = 0;
             foreach (var face in initialPolyhedron.Faces)
             {
-                var dividedFaces = SubdivideFace(face, divisions, addPoint);
+                var dividedFaces = registerRegions
+                    ? SubdivideFace(face, divisions, addPoint, regionId)
+                    : SubdivideFace(face, divisions, addPoint, -1);
                 newFaces.AddRange(dividedFaces);
+
+                regionId += 1;
             }
 
             var newPoints = newFaces.SelectMany(f => f.Points).Distinct().ToList();
@@ -145,12 +156,13 @@ namespace PlanetGeneration
         /// <param name="divisions">The number of divisions along each edge of the face.</param>
         /// <param name="addPoint">A function that takes the coordinates of a point, and either returns an existing
         /// point matchin the coordinates, or returns a new point if none exist.</param>
+        /// <param name="regionId"></param>
         /// <returns></returns>
-        private List<Face> SubdivideFace(Face face, int divisions, Func<Point, Point> addPoint)
+        private List<Face> SubdivideFace(Face face, int divisions, Func<Point, Point> addPoint, int regionId)
         {
             var bottomEdge = new List<Point> { face.Points[0] };
-            var leftEdge = SubdivideEdgeBetweenPoints(face.Points[0], face.Points[1], divisions, addPoint);
-            var rightEdge = SubdivideEdgeBetweenPoints(face.Points[0], face.Points[2], divisions, addPoint);
+            var leftEdge = SubdivideEdgeBetweenPoints(face.Points[0], face.Points[1], divisions, addPoint, regionId);
+            var rightEdge = SubdivideEdgeBetweenPoints(face.Points[0], face.Points[2], divisions, addPoint, regionId);
 
             var currentRow = bottomEdge;
 
@@ -159,7 +171,7 @@ namespace PlanetGeneration
             for (var i = 1; i <= divisions; i++)
             {
                 var previousRow = currentRow;
-                currentRow = SubdivideEdgeBetweenPoints(leftEdge[i], rightEdge[i], i, addPoint);
+                currentRow = SubdivideEdgeBetweenPoints(leftEdge[i], rightEdge[i], i, addPoint, regionId);
 
                 for (var j = 0; j < i; j++)
                 {
@@ -182,14 +194,19 @@ namespace PlanetGeneration
         /// </summary>
         /// <returns></returns>
         private List<Point> SubdivideEdgeBetweenPoints(Point p1, Point p2, int divisions,
-            Func<Point, Point> addPoint)
+            Func<Point, Point> addPoint, int regionId = -1)
         {
+            // Set regionIds for existing points if they are not already set
+            p1.RegionId = p1.RegionId == -1 ? regionId : p1.RegionId;
+            p2.RegionId = p2.RegionId == -1 ? regionId : p2.RegionId;
+
             var points = new List<Point> { p1 };
 
             for (var i = 1; i < divisions; i++)
             {
                 var ratio = (float) i / divisions;
-                var newPoint = addPoint(Segment(p1, p2, ratio));
+                var newPoint = addPoint(Segment(p1, p2, ratio, regionId));
+
                 points.Add(newPoint);
             }
             points.Add(p2);
@@ -204,7 +221,9 @@ namespace PlanetGeneration
                 p.ProjectToRadius(radius, mutate: true);
             }
 
-            var tiles = new List<Tile>();
+            var numRegions = Math.Max(polyhedron.Corners.Select(c => c.RegionId).Max(), 0) + 1;
+            var regions = Enumerable.Range(0, numRegions).Select(_ => new Region()).ToList();
+
             foreach (var p in polyhedron.Corners)
             {
                 var center = p;
@@ -222,12 +241,12 @@ namespace PlanetGeneration
                     tile.Boundary.Reverse();
                 }
 
-                tiles.Add(tile);
+                if (p.RegionId != null) regions[(int) p.RegionId].Tiles.Add(tile);
             }
 
             return new Hexasphere
             {
-                Tiles = tiles
+                Regions = regions,
             };
         }
 
@@ -241,12 +260,12 @@ namespace PlanetGeneration
                    (tile.Center.Z * normal.z >= 0);
         }
 
-        private Point Segment(Point p1, Point p2, float ratio)
+        private Point Segment(Point p1, Point p2, float ratio, int regionId = -1)
         {
             var x = p1.X * (1 - ratio) + p2.X * ratio;
             var y = p1.Y * (1 - ratio) + p2.Y * ratio;
             var z = p1.Z * (1 - ratio) + p2.Z * ratio;
-            return new Point(x, y, z);
+            return new Point(x, y, z, regionId);
         }
     }
 }
