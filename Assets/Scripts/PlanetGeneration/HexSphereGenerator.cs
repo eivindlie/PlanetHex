@@ -31,7 +31,8 @@ namespace PlanetGeneration
         public Hexasphere Generate()
         {
             var polyhedron = CreateInitialPolyhedron();
-            polyhedron = SubdividePolyhedron(polyhedron, _numDivisions);
+            polyhedron = SubdividePolyhedron(polyhedron, _regionDivisions, false);
+            polyhedron = SubdividePolyhedron(polyhedron, _numDivisions / _regionDivisions);
             var hexasphere = MapPolyhedronToHexasphere(polyhedron, _radius, _hexSize);
 
             return hexasphere;
@@ -87,7 +88,7 @@ namespace PlanetGeneration
             };
         }
 
-        private Polyhedron SubdividePolyhedron(Polyhedron initialPolyhedron, int divisions)
+        private Polyhedron SubdividePolyhedron(Polyhedron initialPolyhedron, int divisions, bool registerFaces = true)
         {
             var addPoint = CreatePointAdder(initialPolyhedron.Corners);
 
@@ -95,7 +96,7 @@ namespace PlanetGeneration
 
             foreach (var face in initialPolyhedron.Faces)
             {
-                var dividedFaces = SubdivideFace(face, divisions, addPoint);
+                var dividedFaces = SubdivideFace(face, divisions, addPoint, registerFaces);
                 newFaces.AddRange(dividedFaces);
             }
 
@@ -146,7 +147,8 @@ namespace PlanetGeneration
         /// <param name="addPoint">A function that takes the coordinates of a point, and either returns an existing
         /// point matchin the coordinates, or returns a new point if none exist.</param>
         /// <returns></returns>
-        private List<Face> SubdivideFace(Face face, int divisions, Func<Point, Point> addPoint)
+        private List<Face> SubdivideFace(Face face, int divisions, Func<Point, Point> addPoint,
+            bool registerFaces = true)
         {
             var bottomEdge = new List<Point> { face.Points[0] };
             var leftEdge = SubdivideEdgeBetweenPoints(face.Points[0], face.Points[1], divisions, addPoint);
@@ -163,12 +165,12 @@ namespace PlanetGeneration
 
                 for (var j = 0; j < i; j++)
                 {
-                    var newFace = new Face(previousRow[j], currentRow[j], currentRow[j + 1], true);
+                    var newFace = new Face(previousRow[j], currentRow[j], currentRow[j + 1], registerFaces);
                     newFaces.Add(newFace);
 
                     if (j <= 0) continue;
 
-                    newFace = new Face(previousRow[j - 1], previousRow[j], currentRow[j], true);
+                    newFace = new Face(previousRow[j - 1], previousRow[j], currentRow[j], registerFaces);
                     newFaces.Add(newFace);
                 }
             }
@@ -228,7 +230,6 @@ namespace PlanetGeneration
                 {
                     tile.Boundary.Reverse();
                 }
-
 
                 var regionId = p.Region ?? 0;
                 regions[regionId].Tiles.Add(tile);
