@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
 
+using Behaviours.Planet.Blocks.Impl;
+
 using Extensions;
 
 using Models.HexSphere;
@@ -87,7 +89,9 @@ namespace PlanetGeneration
         {
             var height = Random.Range(0, _settings.HeightLimit);
             var numChunks = (int) Mathf.Ceil((float) _settings.HeightLimit / _settings.ChunkHeight);
-            return Enumerable.Range(0, numChunks * _settings.ChunkHeight).Select((x, i) => i < height ? 1 : 0).ToList();
+            return Enumerable.Range(0, numChunks * _settings.ChunkHeight)
+                .Select((x, i) => i < height ? BlackBlock.BlockId : AirBlock.BlockId)
+                .ToList();
         }
     }
 }
