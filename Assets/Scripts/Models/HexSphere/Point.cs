@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 
+using PlanetGeneration;
+
 using UnityEngine;
 
 namespace Models.HexSphere
@@ -78,12 +80,11 @@ namespace Models.HexSphere
                 {
                     for(var j = 0; j < workingList.Count; j++)
                     {
-                        if(i <= ret.Count && workingList[j].IsAdjacentTo(ret[i - 1]))
-                        {
-                            ret.Add(workingList[j]);
-                            workingList.RemoveAt(j);
-                            break;
-                        }
+                        if (i > ret.Count || !FaceHelpers.AreAdjacent(workingList[j], ret[i - 1])) continue;
+                        
+                        ret.Add(workingList[j]);
+                        workingList.RemoveAt(j);
+                        break;
                     }
                 }
                 i++;

@@ -34,22 +34,6 @@ namespace Models.HexSphere
                 }
             }
         }
-        
-        public bool IsAdjacentTo(Face face)
-        {
-            var count = 0;
-            foreach (var p1 in Points)
-            {
-                foreach (var p2 in face.Points)
-                {
-                    if (p1 == p2)
-                    {
-                        count++;
-                    }
-                }
-            }
-            return count == 2;
-        }
 
         public override string ToString()
         {
