@@ -100,8 +100,8 @@ namespace PlanetGeneration
             foreach (var (face, index) in initialPolyhedron.Faces.WithIndex())
             {
                 var dividedFaces = registerRegions
-                    ? SubdivideFace(face, divisions, addPoint, registerFaces)
-                    : SubdivideFace(face, divisions, addPoint, registerFaces, index);
+                    ? SubdivideFace(face, divisions, addPoint, registerFaces, index)
+                    : SubdivideFace(face, divisions, addPoint, registerFaces);
                 newFaces.AddRange(dividedFaces);
             }
 
