@@ -23,7 +23,7 @@ namespace PlanetGeneration
         {
             var hexSphere = new HexSphereGenerator(_settings.BaseRadius, _settings.Divisions).Generate();
 
-            var regions = hexSphere.Regions.Select(GenerateRegion);
+            var regions = hexSphere.Regions.Select(GenerateRegion).ToArray();
 
             return new Planet
             {
@@ -32,7 +32,8 @@ namespace PlanetGeneration
                 BaseRadius = _settings.BaseRadius,
                 HeightLimit = _settings.HeightLimit,
 
-                HexSphere = hexSphere
+                HexSphere = hexSphere,
+                Regions = regions
             };
         }
 
@@ -68,7 +69,7 @@ namespace PlanetGeneration
         {
             return new Chunk
             {
-                Layers = Enumerable.Range(0, _settings.HeightLimit)
+                Layers = Enumerable.Range(0, _settings.ChunkHeight)
                     .Select(_ => GenerateEmptyLayer(tileRegion))
                     .ToArray()
             };
@@ -85,7 +86,8 @@ namespace PlanetGeneration
         private List<int> GenerateTileStack(Tile tile)
         {
             var height = Random.Range(0, _settings.HeightLimit);
-            return Enumerable.Range(0, height).Select(x => 0).ToList();
+            var numChunks = (int) Mathf.Ceil((float) _settings.HeightLimit / _settings.ChunkHeight);
+            return Enumerable.Range(0, numChunks * _settings.ChunkHeight).Select((x, i) => i < height ? 1 : 0).ToList();
         }
     }
 }
