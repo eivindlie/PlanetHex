@@ -204,7 +204,14 @@ namespace PlanetGeneration
                 p.ProjectToRadius(radius, mutate: true);
             }
 
-            var tiles = new List<Tile>();
+            var numRegions = polyhedron.Corners.Select(p => p.Region ?? 0).Max() + 1;
+            var regions = Enumerable.Range(0, numRegions)
+                .Select(_ => new TileRegion
+                {
+                    Tiles = new List<Tile>()
+                })
+                .ToList();
+
             foreach (var p in polyhedron.Corners)
             {
                 var center = p;
@@ -222,18 +229,14 @@ namespace PlanetGeneration
                     tile.Boundary.Reverse();
                 }
 
-                tiles.Add(tile);
+
+                var regionId = p.Region ?? 0;
+                regions[regionId].Tiles.Add(tile);
             }
 
             return new Hexasphere
             {
-                Regions = new List<TileRegion>
-                {
-                    new TileRegion
-                    {
-                        Tiles = tiles
-                    }
-                }
+                Regions = regions
             };
         }
 

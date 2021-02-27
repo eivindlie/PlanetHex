@@ -9,6 +9,8 @@ namespace PlanetGeneration.Models
         public float X { get; private set; }
         public float Y { get; private set; }
         public float Z { get; private set; }
+        
+        public int? Region { get; set; }
 
         public List<Face> Faces { get; } = new List<Face>();
 
