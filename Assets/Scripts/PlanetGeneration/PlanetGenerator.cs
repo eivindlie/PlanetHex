@@ -90,7 +90,7 @@ namespace PlanetGeneration
             var height = Random.Range(0, _settings.HeightLimit);
             var numChunks = (int) Mathf.Ceil((float) _settings.HeightLimit / _settings.ChunkHeight);
             return Enumerable.Range(0, numChunks * _settings.ChunkHeight)
-                .Select((x, i) => i < height ? BlackBlock.BlockId : AirBlock.BlockId)
+                .Select((x, i) => i < height ? BlueBlock.BlockId : AirBlock.BlockId)
                 .ToList();
         }
     }
