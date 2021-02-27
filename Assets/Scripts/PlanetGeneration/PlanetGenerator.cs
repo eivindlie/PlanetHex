@@ -66,7 +66,8 @@ namespace PlanetGeneration
                 Chunks = Enumerable.Range(0, numChunks)
                     .Select(chunkNumber => GenerateEmptyChunk(tileRegion, chunkNumber))
                     .ToArray(),
-                RegionNumber = regionNumber
+                RegionNumber = regionNumber,
+                Center = tileRegion.Center,
             };
         }
 
