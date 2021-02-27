@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -17,6 +18,7 @@ namespace Rendering
     {
         private const int RenderDistance = 100;
         private const int UnrenderDistance = 150;
+        private const float UpdateFrequency = 2f;
 
         private readonly Planet _planet;
         private readonly GameObject _player;
@@ -34,6 +36,15 @@ namespace Rendering
         {
             _planet = new PlanetGenerator(generatorSettings).Generate();
             _player = player;
+        }
+
+        public IEnumerator RegionRenderCoroutine()
+        {
+            while (true)
+            {
+
+                yield return new WaitForSeconds(UpdateFrequency);
+            }
         }
 
         public void UpdateRenderedRegions()

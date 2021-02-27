@@ -27,6 +27,8 @@ namespace Behaviours.Planet
             var planet = new PlanetGenerator(settings).Generate();
 
             _planetController = new PlanetController(planet, player);
+
+            StartCoroutine(_planetController.RegionRenderCoroutine());
         }
 
         public void Update()

@@ -11,7 +11,7 @@ namespace Behaviours.Character
         private Rigidbody _rigidbody;
         private const float WalkSpeed = 10f;
         private const float RunSpeed = 15f;
-        private const float JumpForce = 1000;
+        private const float JumpForce = 500;
         private const float MouseSpeed = 3;
         
         private Vector2 _rotation = new Vector2(0, 0);
