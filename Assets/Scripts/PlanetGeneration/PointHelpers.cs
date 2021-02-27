@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 
 using Models.HexSphere;
+using Models.Shared;
 
 using UnityEngine;
 
@@ -8,28 +9,36 @@ namespace PlanetGeneration
 {
     public static class PointHelpers
     {
-        public static Point ProjectToRadius(Point point, float radius, float scale=1.0f)
+        public static Point ProjectToRadius(Point point, float radius, float scale = 1.0f)
         {
             scale = Mathf.Max(0, Mathf.Min(1, scale));
             
             var magnitude = Mathf.Sqrt(Mathf.Pow(point.X, 2) + Mathf.Pow(point.Y, 2) + Mathf.Pow(point.Z, 2));
             var ratio = radius / magnitude;
-            
-            var x = point.X * ratio * scale;
-            var y = point.Y * ratio * scale;
-            var z = point.Z * ratio * scale;
 
             return new Point
             {
-                X = x,
-                Y = y,
-                Z = z,
+                X = point.X * ratio * scale,
+                Y = point.Y * ratio * scale,
+                Z = point.Z * ratio * scale
+            };
+        }
+        
+        public static HexSpherePoint ProjectToRadius(HexSpherePoint point, float radius, float scale=1.0f)
+        {
+            var projectedPoint = ProjectToRadius(point as Point, radius, scale);
+
+            return new HexSpherePoint
+            {
+                X = projectedPoint.X,
+                Y = projectedPoint.Y,
+                Z = projectedPoint.Z,
                 Region = point.Region,
                 Faces = point.Faces
             };
         }
         
-        public static List<Face> GetOrderedFaces(Point point)
+        public static List<Face> GetOrderedFaces(HexSpherePoint point)
         {
             var workingList = new List<Face>(point.Faces);
             var ret = new List<Face>();

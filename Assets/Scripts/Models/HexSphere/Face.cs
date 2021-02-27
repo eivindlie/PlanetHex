@@ -2,11 +2,11 @@ namespace Models.HexSphere
 {
     public class Face
     {
-        public Point[] Points { get; set; }
+        public HexSpherePoint[] Points { get; set; }
 
-        private Point _centroid;
+        private HexSpherePoint _centroid;
         
-        public Point Centroid
+        public HexSpherePoint Centroid
         {
             get
             {
@@ -16,13 +16,13 @@ namespace Models.HexSphere
                 var y = (Points[0].Y + Points[1].Y + Points[2].Y) / 3;
                 var z = (Points[0].Z + Points[1].Z + Points[2].Z) / 3;
 
-                _centroid = new Point(x, y, z);
+                _centroid = new HexSpherePoint(x, y, z);
 
                 return _centroid;
             }
         }
 
-        public Face(Point p1, Point p2, Point p3, bool registerFace = false)
+        public Face(HexSpherePoint p1, HexSpherePoint p2, HexSpherePoint p3, bool registerFace = false)
         {
             Points = new[] { p1, p2, p3 };
 

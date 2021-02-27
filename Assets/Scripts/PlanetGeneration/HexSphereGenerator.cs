@@ -5,6 +5,7 @@ using System.Linq;
 using Extensions;
 
 using Models.HexSphere;
+using Models.Shared;
 
 using UnityEngine;
 
@@ -45,18 +46,18 @@ namespace PlanetGeneration
             var tao = 1.61803399f;
             var corners = new[]
             {
-                new Point(1000, tao * 1000, 0),
-                new Point(-1000, tao * 1000, 0),
-                new Point(1000, -tao * 1000, 0),
-                new Point(-1000, -tao * 1000, 0),
-                new Point(0, 1000, tao * 1000),
-                new Point(0, -1000, tao * 1000),
-                new Point(0, 1000, -tao * 1000),
-                new Point(0, -1000, -tao * 1000),
-                new Point(tao * 1000, 0, 1000),
-                new Point(-tao * 1000, 0, 1000),
-                new Point(tao * 1000, 0, -1000),
-                new Point(-tao * 1000, 0, -1000)
+                new HexSpherePoint(1000, tao * 1000, 0),
+                new HexSpherePoint(-1000, tao * 1000, 0),
+                new HexSpherePoint(1000, -tao * 1000, 0),
+                new HexSpherePoint(-1000, -tao * 1000, 0),
+                new HexSpherePoint(0, 1000, tao * 1000),
+                new HexSpherePoint(0, -1000, tao * 1000),
+                new HexSpherePoint(0, 1000, -tao * 1000),
+                new HexSpherePoint(0, -1000, -tao * 1000),
+                new HexSpherePoint(tao * 1000, 0, 1000),
+                new HexSpherePoint(-tao * 1000, 0, 1000),
+                new HexSpherePoint(tao * 1000, 0, -1000),
+                new HexSpherePoint(-tao * 1000, 0, -1000)
             };
 
             var faces = new[]
@@ -119,9 +120,9 @@ namespace PlanetGeneration
         /// </summary>
         /// <param name="points">An optional initial list of points.</param>
         /// <returns></returns>
-        private Func<Point, Point> CreatePointAdder(IEnumerable<Point> points = null)
+        private Func<HexSpherePoint, HexSpherePoint> CreatePointAdder(IEnumerable<HexSpherePoint> points = null)
         {
-            var pointsMap = new Dictionary<Point, Point>();
+            var pointsMap = new Dictionary<HexSpherePoint, HexSpherePoint>();
             if (points != null)
             {
                 foreach (var p in points)
@@ -130,7 +131,7 @@ namespace PlanetGeneration
                 }
             }
 
-            Point AddPoint(Point p)
+            HexSpherePoint AddPoint(HexSpherePoint p)
             {
                 if (!pointsMap.ContainsKey(p))
                 {
@@ -154,10 +155,10 @@ namespace PlanetGeneration
         /// <param name="registerFaces"></param>
         /// <param name="regionId"></param>
         /// <returns></returns>
-        private List<Face> SubdivideFace(Face face, int divisions, Func<Point, Point> addPoint,
+        private List<Face> SubdivideFace(Face face, int divisions, Func<HexSpherePoint, HexSpherePoint> addPoint,
             bool registerFaces = true, int? regionId = null)
         {
-            var bottomEdge = new List<Point> { face.Points[0] };
+            var bottomEdge = new List<HexSpherePoint> { face.Points[0] };
             var leftEdge = SubdivideEdgeBetweenPoints(face.Points[0], face.Points[1], divisions, addPoint, regionId);
             var rightEdge = SubdivideEdgeBetweenPoints(face.Points[0], face.Points[2], divisions, addPoint, regionId);
 
@@ -190,13 +191,13 @@ namespace PlanetGeneration
         /// ordered along the adge from p1 to p2.
         /// </summary>
         /// <returns></returns>
-        private List<Point> SubdivideEdgeBetweenPoints(Point p1, Point p2, int divisions,
-            Func<Point, Point> addPoint, int? regionId = null)
+        private List<HexSpherePoint> SubdivideEdgeBetweenPoints(HexSpherePoint p1, HexSpherePoint p2, int divisions,
+            Func<HexSpherePoint, HexSpherePoint> addPoint, int? regionId = null)
         {
             p1.Region = regionId;
             p2.Region = regionId;
             
-            var points = new List<Point> { p1 };
+            var points = new List<HexSpherePoint> { p1 };
 
             for (var i = 1; i < divisions; i++)
             {
@@ -231,7 +232,7 @@ namespace PlanetGeneration
                 var tile = new Tile
                 {
                     Center = center,
-                    Boundary = boundaryPoints
+                    Boundary = boundaryPoints.Select(p2 => p2 as Point).ToList()
                 };
 
                 if (!IsPoitingAwayFromOrigin(tile))
@@ -259,12 +260,12 @@ namespace PlanetGeneration
                    (tile.Center.Z * normal.z >= 0);
         }
 
-        private Point Segment(Point p1, Point p2, float ratio)
+        private HexSpherePoint Segment(HexSpherePoint p1, HexSpherePoint p2, float ratio)
         {
             var x = p1.X * (1 - ratio) + p2.X * ratio;
             var y = p1.Y * (1 - ratio) + p2.Y * ratio;
             var z = p1.Z * (1 - ratio) + p2.Z * ratio;
-            return new Point(x, y, z);
+            return new HexSpherePoint(x, y, z);
         }
     }
 }
