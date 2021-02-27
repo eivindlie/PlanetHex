@@ -11,6 +11,7 @@ namespace Behaviours.Planet.Blocks
             [AirBlock.BlockId] = new AirBlock(),
             [BlackBlock.BlockId] = new BlackBlock(),
             [BlueBlock.BlockId] = new BlueBlock(),
+            [GreenBlock.BlockId] = new GreenBlock(),
         };
 
         public static Block GetBlock(int blockId)
