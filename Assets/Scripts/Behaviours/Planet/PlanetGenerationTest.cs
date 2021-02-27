@@ -10,6 +10,9 @@ namespace Behaviours.Planet
 {
     public class PlanetGenerationTest : MonoBehaviour
     {
+        public GameObject player;
+        
+        private PlanetController _planetController;
         public void Start()
         {
             var settings = new PlanetGeneratorSettings
@@ -19,12 +22,13 @@ namespace Behaviours.Planet
             };
             
             var planet = new PlanetGenerator(settings).Generate();
-            
-            foreach(var (region, regionIndex) in planet.Regions.WithIndex())
-            foreach (var (chunk, chunkIndex) in region.Chunks.WithIndex())
-            {
-                ChunkRenderer.Render(planet, regionIndex, chunkIndex);
-            }
+
+            _planetController = new PlanetController(planet, player);
+        }
+
+        public void Update()
+        {
+            _planetController.UpdateRenderedRegions();
         }
     }
 }
