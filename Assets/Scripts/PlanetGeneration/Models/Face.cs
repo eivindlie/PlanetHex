@@ -1,10 +1,7 @@
-using System.Collections.Generic;
-
 namespace PlanetGeneration.Models
 {
     public class Face
     {
-        public List<Face> SubFaces { get; set; }
         public Point[] Points { get; set; }
 
         private Point _centroid;

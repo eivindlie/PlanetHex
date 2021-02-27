@@ -9,17 +9,14 @@ namespace PlanetGeneration.Models
         public float X { get; private set; }
         public float Y { get; private set; }
         public float Z { get; private set; }
-        
-        public int RegionId { get; set; }
 
         public List<Face> Faces { get; } = new List<Face>();
 
-        public Point(float x, float y, float z, int regionId = -1)
+        public Point(float x, float y, float z)
         {
             X = x;
             Y = y;
             Z = z;
-            RegionId = regionId;
         }
 
         public void RegisterFace(Face face)
