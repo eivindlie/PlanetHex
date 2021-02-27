@@ -41,6 +41,7 @@ namespace Rendering
                     go.AddComponent<MeshFilter>();
                     go.AddComponent<MeshRenderer>();
                     go.GetComponent<MeshFilter>().mesh = mesh;
+                    go.GetComponent<MeshRenderer>().material = (block as RenderedBlock)?.Material;
 
                     if (block.IsSolid)
                     {
