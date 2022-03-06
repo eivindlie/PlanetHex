@@ -4,12 +4,12 @@ using Microsoft.Xna.Framework.Input;
 
 namespace PlanetHex
 {
-    public class Game1 : Game
+    public class MainGame : Game
     {
-        private GraphicsDeviceManager _graphics;
-        private SpriteBatch _spriteBatch;
+        private GraphicsDeviceManager? _graphics;
+        private SpriteBatch? _spriteBatch;
 
-        public Game1()
+        public MainGame()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
