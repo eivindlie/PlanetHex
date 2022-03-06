@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlanetHex", "PlanetHex\PlanetHex.csproj", "{8FCFC0D1-FBF7-40BE-91AF-62212C251CCF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlanetHex.PlanetGeneration", "PlanetHex.PlanetGeneration\PlanetHex.PlanetGeneration.csproj", "{A7C5FAE3-8F6C-45A8-9B8F-B5C4E7F999B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlanetHex.Common", "PlanetHex.Common\PlanetHex.Common.csproj", "{88F0929A-DAA9-4EDD-82AF-29459C0C195F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +22,13 @@ Global
 		{8FCFC0D1-FBF7-40BE-91AF-62212C251CCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8FCFC0D1-FBF7-40BE-91AF-62212C251CCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8FCFC0D1-FBF7-40BE-91AF-62212C251CCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7C5FAE3-8F6C-45A8-9B8F-B5C4E7F999B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7C5FAE3-8F6C-45A8-9B8F-B5C4E7F999B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7C5FAE3-8F6C-45A8-9B8F-B5C4E7F999B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7C5FAE3-8F6C-45A8-9B8F-B5C4E7F999B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88F0929A-DAA9-4EDD-82AF-29459C0C195F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88F0929A-DAA9-4EDD-82AF-29459C0C195F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88F0929A-DAA9-4EDD-82AF-29459C0C195F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88F0929A-DAA9-4EDD-82AF-29459C0C195F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
