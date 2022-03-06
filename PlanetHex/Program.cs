@@ -1,5 +1,9 @@
 ﻿using System;
 
+using Microsoft.Extensions.DependencyInjection;
+
+using PlanetHex.Setup;
+
 namespace PlanetHex
 {
     public static class Program
@@ -7,7 +11,9 @@ namespace PlanetHex
         [STAThread]
         static void Main()
         {
-            using var game = new MainGame();
+            var serviceCollection = DependencyInjection.BuildServiceCollection();
+            var serviceProvider = serviceCollection.BuildServiceProvider();
+            using var game = serviceProvider.GetRequiredService<MainGame>();
             game.Run();
         }
     }
