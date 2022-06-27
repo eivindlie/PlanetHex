@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Xna.Framework;
@@ -20,7 +21,7 @@ namespace PlanetHex
         private GraphicsDeviceManager? _graphics;
         private World _world = null!;
         private Planet _planet = null!;
-        
+
         private readonly IServiceProvider _serviceProvider;
 
         public MainGame(IServiceProvider serviceProvider)
@@ -48,18 +49,31 @@ namespace PlanetHex
                 Position = new Vector3(0, 0, -350),
                 Target = new Vector3(0, 0, 0),
             });
-            
+
             var planetGenerator = new PlanetGenerator(new PlanetGeneratorSettings());
             _planet = planetGenerator.Generate();
-            var (vertices, indices) = PlanetRenderHelper.CreateMeshFromHexSphere(_planet.HexSphere);
 
-            var planetEntity = _world.CreateEntity();
-            planetEntity.Attach(new MeshRenderableComponent
+            var colors = PlanetRenderHelper.ColorWheel();
+            foreach (var (r, region) in _planet.HexSphere.Regions.Select((region, r) => (r, region)))
             {
-                Vertices = vertices,
-                Indices = indices,
-            });
-            
+                if (r % 3 != 0)
+                {
+                    continue;
+                }
+                colors.MoveNext();
+                foreach (var tile in region.Tiles)
+                {
+                    var (vertices, indices) = PlanetRenderHelper.CreateMeshFromTile(tile, colors.Current, false, 0);
+
+                    var entity = _world.CreateEntity();
+                    entity.Attach(new MeshRenderableComponent
+                    {
+                        Vertices = vertices,
+                        Indices = indices,
+                    });
+                }
+            }
+
             base.LoadContent();
         }
 
