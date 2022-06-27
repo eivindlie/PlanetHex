@@ -1,3 +1,5 @@
+using System.Linq;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -11,33 +13,23 @@ namespace PlanetHex.Systems;
 public class RenderSystem : EntityDrawSystem
 {
     private ComponentMapper<MeshRenderableComponent> _meshRenderableMapper = null!;
-
-    private Vector3 _camTarget;
-    private Vector3 _camPosition;
+    private ComponentMapper<CameraComponent> _cameraMapper = null!;
 
     private Matrix _projectionMatrix;
-    private Matrix _viewMatrix;
-    private Matrix _worldMatrix;
     private BasicEffect? _basicEffect;
 
-    private readonly IGraphicsDeviceManager _graphicsDeviceManager;
     private readonly GraphicsDevice _graphicsDevice;
 
-    public RenderSystem(IGraphicsDeviceManager graphicsDeviceManager, GraphicsDevice graphicsDevice) : base(
-        Aspect.All(typeof(MeshRenderableComponent)))
+    public RenderSystem(GraphicsDevice graphicsDevice) : 
+        base(Aspect.All(typeof(MeshRenderableComponent)))
     {
-        _graphicsDeviceManager = graphicsDeviceManager;
         _graphicsDevice = graphicsDevice;
     }
 
     public override void Initialize(IComponentMapperService mapperService)
     {
-        _camTarget = new Vector3(0, 0, 0);
-        _camPosition = new Vector3(0, 0, -100);
         _projectionMatrix = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45.0f),
             _graphicsDevice.Viewport.AspectRatio, 1f, 1000.0f);
-        _viewMatrix = Matrix.CreateLookAt(_camPosition, _camTarget, Vector3.Up);
-        _worldMatrix = Matrix.CreateWorld(_camTarget, Vector3.Forward, Vector3.Up);
 
         _basicEffect = new BasicEffect(_graphicsDevice);
         _basicEffect.Alpha = 1.0f;
@@ -45,14 +37,19 @@ public class RenderSystem : EntityDrawSystem
         _basicEffect.LightingEnabled = false;
 
         _meshRenderableMapper = mapperService.GetMapper<MeshRenderableComponent>();
+        _cameraMapper = mapperService.GetMapper<CameraComponent>();
     }
 
     public override void Draw(GameTime gameTime)
     {
         _graphicsDevice.Clear(Color.CornflowerBlue);
+        var camera = _cameraMapper.Components.Last();
+        var viewMatrix = Matrix.CreateLookAt(camera.Position, camera.Target, Vector3.Up);
+        var worldMatrix = Matrix.CreateWorld(camera.Target, Vector3.Forward, Vector3.Up);
+        
         _basicEffect!.Projection = _projectionMatrix;
-        _basicEffect!.View = _viewMatrix;
-        _basicEffect!.World = _worldMatrix;
+        _basicEffect!.View = viewMatrix;
+        _basicEffect!.World = worldMatrix;
 
         var rasterizerState = new RasterizerState
         {

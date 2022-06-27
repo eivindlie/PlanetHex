@@ -16,7 +16,7 @@ namespace PlanetHex
     {
         private GraphicsDeviceManager? _graphics;
         private World _world = null!;
-        
+
         private readonly IServiceProvider _serviceProvider;
 
         public MainGame(IServiceProvider serviceProvider)
@@ -37,6 +37,13 @@ namespace PlanetHex
 
         protected override void LoadContent()
         {
+            var camera = _world.CreateEntity();
+            camera.Attach(new CameraComponent
+            {
+                Position = new Vector3(0, 0, -100),
+                Target = new Vector3(0, 0, 0),
+            });
+
             var triangle = _world.CreateEntity();
             triangle.Attach(new MeshRenderableComponent
             {
@@ -47,6 +54,7 @@ namespace PlanetHex
                     new VertexPositionColor(new Vector3(20, -20, 0), Color.Blue)
                 }
             });
+
             base.LoadContent();
         }
 
@@ -65,6 +73,6 @@ namespace PlanetHex
         {
             _world.Draw(gameTime);
             base.Draw(gameTime);
-        } 
+        }
     }
 }
