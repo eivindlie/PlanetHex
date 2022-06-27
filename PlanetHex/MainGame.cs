@@ -30,6 +30,7 @@ namespace PlanetHex
         protected override void Initialize()
         {
             _world = new WorldBuilder()
+                .AddSystem(_serviceProvider.GetRequiredService<CameraOrbitSystem>())
                 .AddSystem(_serviceProvider.GetRequiredService<RenderSystem>())
                 .Build();
             base.Initialize();

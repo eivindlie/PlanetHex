@@ -41,5 +41,6 @@ public static class DependencyInjection
     private static void AddSystems(this IServiceCollection serviceCollection)
     {
         serviceCollection.AddSingleton<RenderSystem>();
+        serviceCollection.AddSingleton<CameraOrbitSystem>();
     }
 }
