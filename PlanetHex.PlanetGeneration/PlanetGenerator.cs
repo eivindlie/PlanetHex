@@ -8,7 +8,7 @@ namespace PlanetHex.PlanetGeneration
     public class PlanetGenerator
     {
         private readonly PlanetGeneratorSettings _settings;
-        private readonly SimplexNoiseGenerator _noiseGenerator = new SimplexNoiseGenerator();
+        private readonly SimplexNoiseGenerator _noiseGenerator = new();
 
         public PlanetGenerator(PlanetGeneratorSettings settings)
         {

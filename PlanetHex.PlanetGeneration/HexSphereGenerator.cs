@@ -209,8 +209,6 @@ namespace PlanetHex.PlanetGeneration
 
         private HexSphere MapPolyhedronToHexasphere(Polyhedron polyhedron, float radius, float hexSize)
         {
-            polyhedron.Corners = polyhedron.Corners.Select(p => PointHelpers.ProjectToRadius(p, radius)).ToList();
-
             var numRegions = polyhedron.Corners.Select(p => p.Region ?? 0).Max() + 1;
             var regions = Enumerable.Range(0, numRegions)
                 .Select(_ => new TileRegion
@@ -221,9 +219,12 @@ namespace PlanetHex.PlanetGeneration
 
             foreach (var p in polyhedron.Corners)
             {
-                var center = p;
+                var center = PointHelpers.ProjectToRadius(p, radius);
                 var faces = PointHelpers.GetOrderedFaces(center);
-                var boundaryPoints = faces.Select(f => Segment(center, f.Centroid, hexSize)).ToList();
+                var boundaryPoints = faces
+                    .Select(f => Segment(center, f.Centroid, hexSize))
+                    .Select(p => PointHelpers.ProjectToRadius(p, radius))
+                    .ToList();
 
                 var tile = new Tile
                 {
