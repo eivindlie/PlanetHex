@@ -53,7 +53,8 @@ namespace PlanetHex
                     new VertexPositionColor(new Vector3(0, 20, 0), Color.Red),
                     new VertexPositionColor(new Vector3(-20, -20, 0), Color.Green),
                     new VertexPositionColor(new Vector3(20, -20, 0), Color.Blue)
-                }
+                },
+                Indices = new short[] {0, 1, 2},
             });
 
             base.LoadContent();

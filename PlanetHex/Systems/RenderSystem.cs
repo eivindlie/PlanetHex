@@ -20,7 +20,7 @@ public class RenderSystem : EntityDrawSystem
 
     private readonly GraphicsDevice _graphicsDevice;
 
-    public RenderSystem(GraphicsDevice graphicsDevice) : 
+    public RenderSystem(GraphicsDevice graphicsDevice) :
         base(Aspect.All(typeof(MeshRenderableComponent)))
     {
         _graphicsDevice = graphicsDevice;
@@ -46,7 +46,7 @@ public class RenderSystem : EntityDrawSystem
         var camera = _cameraMapper.Components.Last();
         var viewMatrix = Matrix.CreateLookAt(camera.Position, camera.Target, Vector3.Up);
         var worldMatrix = Matrix.CreateWorld(camera.Target, Vector3.Forward, Vector3.Up);
-        
+
         _basicEffect!.Projection = _projectionMatrix;
         _basicEffect!.View = viewMatrix;
         _basicEffect!.World = worldMatrix;
@@ -63,11 +63,17 @@ public class RenderSystem : EntityDrawSystem
             var vertexBuffer = new VertexBuffer(_graphicsDevice, typeof(VertexPositionColor),
                 meshRenderableComponent.Vertices.Length, BufferUsage.WriteOnly);
             vertexBuffer.SetData(meshRenderableComponent.Vertices);
+            var indexBuffer = new IndexBuffer(_graphicsDevice, IndexElementSize.SixteenBits,
+                meshRenderableComponent.Indices.Length, BufferUsage.WriteOnly);
+            indexBuffer.SetData(meshRenderableComponent.Indices);
+
             _graphicsDevice.SetVertexBuffer(vertexBuffer);
+            _graphicsDevice.Indices = indexBuffer;
+
             foreach (var pass in _basicEffect.CurrentTechnique.Passes)
             {
                 pass.Apply();
-                _graphicsDevice.DrawPrimitives(PrimitiveType.TriangleList, 0, 3);
+                _graphicsDevice.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, indexBuffer.IndexCount);
             }
         }
     }
