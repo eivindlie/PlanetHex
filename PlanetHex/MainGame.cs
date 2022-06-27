@@ -41,7 +41,7 @@ namespace PlanetHex
             var camera = _world.CreateEntity();
             camera.Attach(new CameraComponent
             {
-                Position = new Vector3(0, 0, -100),
+                Position = new Vector3(0, 75, -125),
                 Target = new Vector3(0, 0, 0),
             });
 
@@ -52,9 +52,19 @@ namespace PlanetHex
                 {
                     new VertexPositionColor(new Vector3(0, 20, 0), Color.Red),
                     new VertexPositionColor(new Vector3(-20, -20, 0), Color.Green),
-                    new VertexPositionColor(new Vector3(20, -20, 0), Color.Blue)
+                    new VertexPositionColor(new Vector3(20, -20, 0), Color.Blue),
+                    new VertexPositionColor(new Vector3(0, -40, 0), Color.Yellow),
+                    new VertexPositionColor(new Vector3(0, -20, -20), Color.Coral),
                 },
-                Indices = new short[] {0, 1, 2},
+                Indices = new short[]
+                {
+                    0, 1, 2, 
+                    1, 2, 3,
+                    1, 2, 4,
+                    2, 3, 4,
+                    0, 2, 4,
+                    0, 3, 4,
+                },
             });
 
             base.LoadContent();
