@@ -29,7 +29,7 @@ public class RenderSystem : EntityDrawSystem
     public override void Initialize(IComponentMapperService mapperService)
     {
         _projectionMatrix = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45.0f),
-            _graphicsDevice.Viewport.AspectRatio, 1f, 1000.0f);
+            _graphicsDevice.Viewport.AspectRatio, 1f, 5000.0f);
 
         _basicEffect = new BasicEffect(_graphicsDevice);
         _basicEffect.Alpha = 1.0f;
@@ -73,7 +73,7 @@ public class RenderSystem : EntityDrawSystem
             foreach (var pass in _basicEffect.CurrentTechnique.Passes)
             {
                 pass.Apply();
-                _graphicsDevice.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, indexBuffer.IndexCount);
+                _graphicsDevice.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, indexBuffer.IndexCount / 3);
             }
         }
     }

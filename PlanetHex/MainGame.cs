@@ -8,6 +8,9 @@ using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended.Entities;
 
 using PlanetHex.Components;
+using PlanetHex.PlanetGeneration;
+using PlanetHex.PlanetGeneration.Models.Planet;
+using PlanetHex.Setup;
 using PlanetHex.Systems;
 
 namespace PlanetHex
@@ -16,7 +19,8 @@ namespace PlanetHex
     {
         private GraphicsDeviceManager? _graphics;
         private World _world = null!;
-
+        private Planet _planet = null!;
+        
         private readonly IServiceProvider _serviceProvider;
 
         public MainGame(IServiceProvider serviceProvider)
@@ -41,32 +45,21 @@ namespace PlanetHex
             var camera = _world.CreateEntity();
             camera.Attach(new CameraComponent
             {
-                Position = new Vector3(0, 75, -125),
+                Position = new Vector3(0, 0, -350),
                 Target = new Vector3(0, 0, 0),
             });
+            
+            var planetGenerator = new PlanetGenerator(new PlanetGeneratorSettings());
+            _planet = planetGenerator.Generate();
+            var (vertices, indices) = PlanetRenderHelper.CreateMeshFromHexSphere(_planet.HexSphere);
 
-            var triangle = _world.CreateEntity();
-            triangle.Attach(new MeshRenderableComponent
+            var planetEntity = _world.CreateEntity();
+            planetEntity.Attach(new MeshRenderableComponent
             {
-                Vertices = new[]
-                {
-                    new VertexPositionColor(new Vector3(0, 20, 0), Color.Red),
-                    new VertexPositionColor(new Vector3(-20, -20, 0), Color.Green),
-                    new VertexPositionColor(new Vector3(20, -20, 0), Color.Blue),
-                    new VertexPositionColor(new Vector3(0, -40, 0), Color.Yellow),
-                    new VertexPositionColor(new Vector3(0, -20, -20), Color.Coral),
-                },
-                Indices = new short[]
-                {
-                    0, 1, 2, 
-                    1, 2, 3,
-                    1, 2, 4,
-                    2, 3, 4,
-                    0, 2, 4,
-                    0, 3, 4,
-                },
+                Vertices = vertices,
+                Indices = indices,
             });
-
+            
             base.LoadContent();
         }
 
