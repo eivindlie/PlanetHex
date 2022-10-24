@@ -53,7 +53,7 @@ public class RenderSystem : EntityDrawSystem
 
         var rasterizerState = new RasterizerState
         {
-            CullMode = CullMode.None,
+            CullMode = CullMode.CullClockwiseFace,
         };
         _graphicsDevice.RasterizerState = rasterizerState;
 

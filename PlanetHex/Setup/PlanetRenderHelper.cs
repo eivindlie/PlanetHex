@@ -65,9 +65,9 @@ internal static class PlanetRenderHelper
         {
             indices = new short[]
             {
-                0, 1, 2,
-                2, 3, 4,
-                0, 2, 4,
+                0, 2, 1,
+                2, 4, 3,
+                0, 4, 2,
 
                 5, 6, 7,
                 7, 8, 9,
@@ -93,10 +93,10 @@ internal static class PlanetRenderHelper
         {
             indices = new short[]
             {
-                0, 1, 2,
-                2, 3, 4,
-                4, 5, 0,
-                0, 2, 4,
+                0, 2, 1,
+                2, 4, 3,
+                4, 0, 5,
+                0, 4, 2,
 
                 6, 7, 8,
                 8, 9, 10,
