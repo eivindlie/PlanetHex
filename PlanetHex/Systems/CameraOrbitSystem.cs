@@ -13,11 +13,11 @@ public class CameraOrbitSystem : EntityProcessingSystem
 
     private ComponentMapper<CameraComponent> _cameraMapper = null!;
     private Matrix _rotationMatrix = new();
-    
+    private const float SpeedInDegreesPerFrame = 0.5f;
     public override void Initialize(IComponentMapperService mapperService)
     {
         _cameraMapper = mapperService.GetMapper<CameraComponent>();
-        _rotationMatrix = Matrix.CreateRotationY(MathHelper.ToRadians(1f));
+        _rotationMatrix = Matrix.CreateRotationY(MathHelper.ToRadians(SpeedInDegreesPerFrame));
     }
 
     public override void Process(GameTime gameTime, int entityId)
