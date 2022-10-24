@@ -11,6 +11,7 @@ using MonoGame.Extended.Entities;
 using PlanetHex.Components;
 using PlanetHex.PlanetGeneration;
 using PlanetHex.PlanetGeneration.Models.Planet;
+using PlanetHex.PlanetGeneration.Noise;
 using PlanetHex.Setup;
 using PlanetHex.Systems;
 
@@ -61,9 +62,14 @@ namespace PlanetHex
                     continue;
                 }
                 colors.MoveNext();
+                var noise = new SimplexNoiseGenerator();
+                var coordFactor = 2f / (_planet.BaseRadius + _planet.HeightLimit);
                 foreach (var tile in region.Tiles)
                 {
-                    var (vertices, indices) = PlanetRenderHelper.CreateMeshFromTile(tile, colors.Current, false, 0);
+                    var center = tile.Center.AsVector();
+                    var noiseIntensity = (noise.CoherentNoise(center.X, center.Y, center.Z));
+                    var height = (int)Math.Round(((noiseIntensity + 1) / 2) * _planet.BaseRadius);
+                    var (vertices, indices) = PlanetRenderHelper.CreateMeshFromTile(tile, colors.Current, false, height);
 
                     var entity = _world.CreateEntity();
                     entity.Attach(new MeshRenderableComponent
