@@ -34,7 +34,21 @@ public class RenderSystem : EntityDrawSystem
         _basicEffect = new BasicEffect(_graphicsDevice);
         _basicEffect.Alpha = 1.0f;
         _basicEffect.VertexColorEnabled = true;
-        _basicEffect.LightingEnabled = false;
+
+        _basicEffect.LightingEnabled = true;
+        _basicEffect.AmbientLightColor = new Vector3(0.2f, 0.2f, 0.2f);
+        _basicEffect.SpecularColor = Vector3.One;
+        _basicEffect.SpecularPower = 255f;
+        
+        _basicEffect.DirectionalLight0.Enabled = true;
+        _basicEffect.DirectionalLight0.DiffuseColor = new Vector3(1, 0, 0 );
+        _basicEffect.DirectionalLight0.Direction = new Vector3(-1, 0, 0);
+        _basicEffect.DirectionalLight0.SpecularColor = Vector3.One;
+
+        _basicEffect.FogEnabled = true;
+        _basicEffect.FogColor = Color.CornflowerBlue.ToVector3();
+        _basicEffect.FogStart = 200f;
+        _basicEffect.FogEnd = 1000f;
 
         _meshRenderableMapper = mapperService.GetMapper<MeshRenderableComponent>();
         _cameraMapper = mapperService.GetMapper<CameraComponent>();
