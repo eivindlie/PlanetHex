@@ -47,7 +47,7 @@ public class RenderSystem : EntityDrawSystem
 
         _basicEffect.FogEnabled = true;
         _basicEffect.FogColor = Color.CornflowerBlue.ToVector3();
-        _basicEffect.FogStart = 200f;
+        _basicEffect.FogStart = 500f;
         _basicEffect.FogEnd = 1000f;
 
         _meshRenderableMapper = mapperService.GetMapper<MeshRenderableComponent>();
